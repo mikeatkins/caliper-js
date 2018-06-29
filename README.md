@@ -15,7 +15,8 @@ transmitting event data from instrumented applications to target endpoints for s
 this branch.
 
 ## Tags
-*caliper-js* releases are tagged and versioned MAJOR.MINOR.PATCH\[-label\] (e.g., 1.1.1).  Pre-release 
+*caliper-js* releases are tagged and versioned MAJOR.MINOR.PATCH\[-label\] (e.g., 1.1.2).  
+Pre-release 
 tags are identified with an extensions label (e.g., "1.2.0-RC01").  The tags are stored in this repository.
 
 ## Contributing

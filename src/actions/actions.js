@@ -98,9 +98,9 @@ var actions = {
     term: "Described",
     iri: "http://purl.imsglobal.org/caliper/actions/Described",
     events: ["event"]},
-  disabledCloseCaptioning: {
-    term: "DisabledCloseCaptioning",
-    iri: "http://purl.imsglobal.org/caliper/actions/DisabledCloseCaptioning",
+  disabledClosedCaptioning: {
+    term: "DisabledClosedCaptioning",
+    iri: "http://purl.imsglobal.org/caliper/actions/DisabledClosedCaptioning",
     events: ["event", "mediaEvent"]
   },
   disliked: {
@@ -108,9 +108,9 @@ var actions = {
     iri: "http://purl.imsglobal.org/caliper/actions/Disliked",
     events: ["event"]
   },
-  enabledCloseCaptioning: {
-    term: "EnabledCloseCaptioning",
-    iri: "http://purl.imsglobal.org/caliper/actions/EnabledCloseCaptioning",
+  enabledClosedCaptioning: {
+    term: "EnabledClosedCaptioning",
+    iri: "http://purl.imsglobal.org/caliper/actions/EnabledClosedCaptioning",
     events: ["event", "mediaEvent"]
   },
   ended: {
