@@ -54,12 +54,55 @@ module.exports.generateUUID = function generateUUID(version) {
 };
 
 /**
- * Check if object has JSON-LD @context property
+ * Check if object has JSON-LD @context property value
  * @param opts
  * @returns {boolean}
  */
 module.exports.hasCaliperContext = function hasCaliperContext(opts) {
   var regex = /http:\/\/purl.imsglobal.org\/ctx\/caliper\/?v?[0-9]*p?[0-9]*/;
+  var hasCaliperContext = false;
+
+  if (opts.hasOwnProperty('@context')) {
+    switch(checkObjectType(opts['@context'])) {
+      case '[object String]':
+        hasCaliperContext = regex.test(opts['@context']);
+        break;
+      case '[object Array]':
+        for (var i = 0, len = opts['@context'].length; i < len; i++) {
+          if (checkObjectType(opts['@context'][i]) === '[object String]') {
+            if (regex.text(opts['@context'][i])) {
+              hasCaliperContext = true;
+              break;
+            }
+          }
+        }
+        break;
+      case '[object Object]':
+        if (opts['@context'].hasOwnProperty('@vocab')) {
+          hasCaliperContext = regex.test(opts['@context']['@vocab']);
+        }
+
+        if (hasCaliperContext) {
+          break;
+        }
+
+        if (opts['@context'].hasOwnProperty('@base')) {
+          hasCaliperContext = regex.test(opts['@context']['@base']);
+        }
+        break;
+    }
+  }
+
+  return hasCaliperContext;
+};
+
+/**
+ * Check if object has JSON-LD @context extension property value
+ * @param opts
+ * @returns {boolean}
+ */
+module.exports.hasCaliperContextExtension = function hasCaliperContextExtension(opts) {
+  var regex = /http:\/\/purl.imsglobal.org\/ctx\/caliper\/?v?[0-9]*p?[0-9]*\/[A-Za-z]*Profile-extension/;
   var hasCaliperContext = false;
 
   if (opts.hasOwnProperty('@context')) {
