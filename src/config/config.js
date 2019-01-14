@@ -24,13 +24,14 @@
  * testFixturesBaseDir:           Base directory for test fixtures.
  * uuidVersion:                   UUID versions 1 and 4 supported.
  */
-var Config = {
+const Config = {
   dataFormat: "JSON-LD",
   dataVersion: "http://purl.imsglobal.org/ctx/caliper/v1p1",
   dateTimeFormat: "YYYY-MM-DDTHH:mm:ss.SSSZ",
   jsonldContext: {
     v1p0: "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     v1p1: "http://purl.imsglobal.org/ctx/caliper/v1p1",
+    v1p1_search: "http://purl.imsglobal.org/ctx/caliper/v1p1/SearchProfile-extension",
     v1p1_toollaunch: "http://purl.imsglobal.org/ctx/caliper/v1p1/ToolLaunchProfile-extension",
     v1p2: "https://purl.imsglobal.org/caliper/v1p2/context/Core"
   },
