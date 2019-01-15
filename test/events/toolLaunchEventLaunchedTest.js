@@ -28,7 +28,7 @@ var actions = require('../../src/actions/actions');
 
 var entityFactory = require('../../src/entities/entityFactory');
 var CourseSection = require('../../src/entities/agent/courseSection');
-var LtiLink = require('../../src/entities/link/ltiLink');
+var LtiLink = require('../../src/entities/resource/ltiLink');
 var LtiSession = require('../../src/entities/session/ltiSession');
 var Membership = require('../../src/entities/agent/membership');
 var Person = require('../../src/entities/agent/person');
