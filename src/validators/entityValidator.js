@@ -31,18 +31,6 @@ function checkOpts(delegate, opts) {
         if (validator.hasCaliperContext(delegate)) {
           delete opts['@context']; // suppress
           break;
-
-
-        /*
-        if (validator.hasCaliperContextExtension(opts))
-          break;
-        else {
-          if (validator.hasCaliperContext(delegate)) {
-            delete opts['@context']; // suppress
-            break;
-          }
-          */
-
         }
       case "type":
         if (validator.hasType(delegate)) {
