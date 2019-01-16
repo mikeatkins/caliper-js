@@ -22,7 +22,7 @@ var test = require('tape');
 
 var config =  require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var LtiLink = require('../../src/entities/link/ltiLink');
+var LtiLink = require('../../src/entities/resource/ltiLink');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 

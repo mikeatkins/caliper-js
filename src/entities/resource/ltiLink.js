@@ -17,13 +17,13 @@
  */
 
 var _ = require('lodash');
-var entity = require('../entity');
+var digitalResource = require('./digitalResource');
 var entityType = require('../entityType').ltiLink;
 
 /**
- * Compose LtiLink from Entity and set default properties.
+ * Compose LtiLink from DigitalResource and set default properties.
  */
-var LtiLink = _.assign({}, entity, {
+var LtiLink = _.assign({}, digitalResource, {
     '@context': entityType.context,
     type: entityType.term,
     messageType: null
