@@ -17,16 +17,15 @@
  */
 
 var _ = require('lodash');
-var session = require('./session');
-var entityType = require('../entityType').ltiSession;
+var event = require('./event');
+var eventType = require('./eventType').search;
 
 /**
- * Link LtiSession to delegate Session and assign default property values.
+ * Compose SearchEvent from Event and set default properties.
  */
-var LtiSession = _.assign({}, session, {
-  '@context': entityType.context,
-  type: entityType.term,
-  messageParameters: {}
+var SearchEvent = _.assign({}, event, {
+    '@context': eventType.context,
+    type: eventType.term
 });
 
-module.exports = LtiSession;
+module.exports = SearchEvent;

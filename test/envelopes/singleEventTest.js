@@ -29,7 +29,7 @@ var AssessmentEvent = require('../../src/events/assessmentEvent');
 var actions = require('../../src/actions/actions');
 
 var entityFactory = require('../../src/entities/entityFactory');
-var Attempt = require('../../src/entities/resource/attempt');
+var Attempt = require('../../src/entities/outcome/attempt');
 var Assessment = require('../../src/entities/resource/assessment');
 var CourseSection = require('../../src/entities/agent/courseSection');
 var Membership = require('../../src/entities/agent/membership');

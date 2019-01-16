@@ -257,7 +257,7 @@ var actions = {
   searched: {
     term: "Searched",
     iri: "http://purl.imsglobal.org/caliper/actions/Searched",
-    events: ["event"]},
+    events: ["event", "searchEvent"]},
   shared: {
     term: "Shared",
     iri: "http://purl.imsglobal.org/caliper/actions/Shared",

@@ -25,7 +25,7 @@ var validator = require('./validator');
  * @param opts
  * @returns {*}
  */
-module.exports.checkOpts = function opts(delegate, opts) {
+function checkOpts(delegate, opts) {
   Object.keys(delegate).forEach(function(key) {
     switch (key) {
       case "@context":
@@ -71,3 +71,5 @@ module.exports.checkOpts = function opts(delegate, opts) {
   });
   return opts;
 };
+
+module.exports.checkOpts = checkOpts;

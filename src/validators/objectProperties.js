@@ -16,17 +16,36 @@
  * with this program. If not, see http://www.gnu.org/licenses/.
  */
 
-var _ = require('lodash');
-var session = require('./session');
-var entityType = require('../entityType').ltiSession;
+const objectProperties = [
+    "actor",
+    "annotated",
+    "annotator",
+    "assignable",
+    "assignee",
+    "attempt",
+    "creator",
+    "edApp",
+    "extensions",
+    "federatedSession",
+    "generated",
+    "group",
+    "isPartOf",
+    "member",
+    "membership",
+    "messageParameters",
+    "object",
+    "organization",
+    "query",
+    "referrer",
+    "replyTo",
+    "scoredBy",
+    "searchProvider",
+    "searchTarget",
+    "selection",
+    "session",
+    "subOrganizationOf",
+    "target",
+    "user"
+];
 
-/**
- * Link LtiSession to delegate Session and assign default property values.
- */
-var LtiSession = _.assign({}, session, {
-  '@context': entityType.context,
-  type: entityType.term,
-  messageParameters: {}
-});
-
-module.exports = LtiSession;
+module.exports = objectProperties;

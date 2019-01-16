@@ -69,6 +69,11 @@ var eventType = {
     term: "NavigationEvent",
     iri: "http://purl.imsglobal.org/caliper/NavigationEvent"
   },
+  search: {
+    context: config.jsonldContext.v1p1_search,
+    term: "SearchEvent",
+    iri: "http://purl.imsglobal.org/caliper/SearchEvent"
+  },
   session: {
     context: config.jsonldContext.v1p1,
     term: "SessionEvent",

@@ -17,16 +17,20 @@
  */
 
 var _ = require('lodash');
-var session = require('./session');
-var entityType = require('../entityType').ltiSession;
+var entity = require('../entity');
+var entityType = require('../entityType').searchResponse;
 
 /**
- * Link LtiSession to delegate Session and assign default property values.
+ * Compose SearchResponse from Entity and set default properties.
  */
-var LtiSession = _.assign({}, session, {
-  '@context': entityType.context,
-  type: entityType.term,
-  messageParameters: {}
+var SearchResponse = _.assign({}, entity, {
+    '@context': entityType.context,
+    type: entityType.term,
+    searchProvider: {},
+    searchTarget: {},
+    query: {},
+    searchResultsItemCount: null,
+    searchResults: []
 });
 
-module.exports = LtiSession;
+module.exports = SearchResponse;
