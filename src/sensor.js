@@ -263,10 +263,6 @@ Caliper.Entities.TagAnnotation            = require('./entities/annotation/tagAn
 // Assignment-related
 Caliper.Entities.LearningObjective        = require('./entities/resource/learningObjective');
 
-// Links
-Caliper.Entities.Link                     = require('./entities/link/link');
-Caliper.Entities.LtiLink                     = require('./entities/link/ltiLink');
-
 // Resources
 Caliper.Entities.Assessment                = require('./entities/resource/assessment');
 Caliper.Entities.AssessmentItem            = require('./entities/resource/assessmentItem');
@@ -279,6 +275,8 @@ Caliper.Entities.Document                  = require('./entities/resource/docume
 Caliper.Entities.Forum                     = require('./entities/resource/forum');
 Caliper.Entities.Frame                     = require('./entities/resource/frame');
 Caliper.Entities.ImageObject               = require('./entities/resource/imageObject');
+Caliper.Entities.Link                     = require('./entities/resource/link');
+Caliper.Entities.LtiLink                  = require('./entities/resource/ltiLink');
 Caliper.Entities.MediaObject               = require('./entities/resource/mediaObject');
 Caliper.Entities.MediaLocation             = require('./entities/resource/mediaLocation');
 Caliper.Entities.Message                   = require('./entities/resource/message');
