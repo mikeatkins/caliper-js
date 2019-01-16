@@ -29,7 +29,7 @@ var actions = require('../../src/actions/actions');
 // Entity
 var entityFactory = require('../../src/entities/entityFactory');
 var Assessment = require('../../src/entities/resource/assessment');
-var Attempt = require('../../src/entities/resource/attempt');
+var Attempt = require('../../src/entities/outcome/attempt');
 var CourseSection = require('../../src/entities/agent/courseSection');
 var Membership = require('../../src/entities/agent/membership');
 var Person = require('../../src/entities/agent/person');

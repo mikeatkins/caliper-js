@@ -110,7 +110,6 @@ testUtils.readFile(path, function(err, fixture) {
     };
 
     var entity = entityFactory().create(LtiSession, {
-      '@context': "http://purl.imsglobal.org/ctx/caliper/v1p1/ToolLaunchProfile-extension",
       id: BASE_EDU_IRI.concat("/lti/sessions/b533eb02823f31024e6b7f53436c42fb99b31241"),
       user: actor,
       messageParameters: messageParameters,

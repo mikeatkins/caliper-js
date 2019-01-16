@@ -28,7 +28,7 @@ var actions = require('../../src/actions/actions');
 
 var entityFactory = require('../../src/entities/entityFactory');
 var Assessment = require('../../src/entities/resource/assessment');
-var Attempt = require('../../src/entities/resource/attempt');
+var Attempt = require('../../src/entities/outcome/attempt');
 var CourseSection = require('../../src/entities/agent/courseSection');
 var Person = require('../../src/entities/agent/person');
 var Score = require('../../src/entities/outcome/score');

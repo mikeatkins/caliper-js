@@ -17,18 +17,8 @@
  */
 
 // var logger = require('../logger');
+var objectProperties = require('../validators/objectProperties');
 var validator = require('../validators/validator');
-
-var objectProperties = ["actor", "annotated", "annotator", "assignable", "assignee", "attempt", "edApp", "federatedSession",
-"generated", "group", "isPartOf", "member", "membership", "object", "organization", "referrer", "replyTo", "scoredBy",
-"session", "subOrganizationOf", "target", "user"];
-
-/*
-var arrayProperties = ["attachments", "creators", "extensions", "items", "keywords", "learningObjectives", "members",
-"roles", "tags", "values", "withAgents"];
-*/
-
-var regexCtx = /http:\/\/purl.imsglobal.org\/ctx\/caliper\/?v?[0-9]*p?[0-9]*/;
 
 /**
  * Represents clientUtils self.
@@ -43,20 +33,6 @@ var self = this;
  */
 self.calculateByteLength = function calculateByteLength(obj) {
   return Buffer.byteLength(obj);
-};
-
-/**
- * Delete @context property if value corresponds to the IMS Caliper context IRI.
- * @param obj
- * @returns {*}
- */
-self.deleteContext = function deleteContext(obj) {
-  if (obj.hasOwnProperty("@context")) {
-    if (regexCtx.test(obj["@context"])) {
-      delete obj["@context"];
-    }
-  }
-  return obj;
 };
 
 /**
@@ -77,11 +53,15 @@ self.parse = function parse(obj) {
  * represent a duplicate Caliper @context property.  Note that the Envelope.data array may contain
  * one or more events or describes (i.e., entities).  In such cases, @context property filtering is
  * applied only to the object properties of each event or entity comprising the array.
+ *
+ * WARN: when adding new entities make sure that objectProperties.js is updated with any new object properties.
+ *
  * @param key
  * @param val
  * @returns {*}
  */
 self.replacer = function replacer(key, val) {
+
   if (val === null) {
     // logger.log("debug", "".concat("REMOVED ", key, " IS NULL"));
     return undefined;
@@ -93,7 +73,7 @@ self.replacer = function replacer(key, val) {
       return undefined;
     } else {
       if (objectProperties.indexOf(key) >= 0) {
-        val = self.deleteContext(val);
+        val = validator.removeContext(val);
       }
     }
   }
@@ -113,7 +93,7 @@ self.replacer = function replacer(key, val) {
       if (key != "data") {
         for (var i = 0, len = val.length; i < len; i++) {
           if (typeof val[i] === "object") {
-            val[i] = self.deleteContext(val[i]);
+            val[i] = validator.removeContext(val[i]);
           }
         }
       }

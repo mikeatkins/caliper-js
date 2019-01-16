@@ -226,11 +226,13 @@ Caliper.Validators = {};
 // Actions
 Caliper.Actions                           = require('./actions/actions');
 
+// Sensor clients
+Caliper.Clients.ClientUtils                = require('./clients/clientUtils');
+Caliper.Clients.HttpClient                 = require('./clients/httpClient');
+Caliper.Clients.HttpOptions                = require('./clients/httpOptions');
+
 // Config
 Caliper.Config.Config                     = require('./config/config');
-
-// Envelope
-Caliper.Envelopes.Envelope                 = require('./envelope');
 
 // Entities
 Caliper.Entities.Entity                   = require('./entities/entity');
@@ -259,7 +261,6 @@ Caliper.Entities.SharedAnnotation         = require('./entities/annotation/share
 Caliper.Entities.TagAnnotation            = require('./entities/annotation/tagAnnotation');
 
 // Assignment-related
-Caliper.Entities.Attempt                  = require('./entities/resource/attempt');
 Caliper.Entities.LearningObjective        = require('./entities/resource/learningObjective');
 
 // Resources
@@ -274,6 +275,8 @@ Caliper.Entities.Document                  = require('./entities/resource/docume
 Caliper.Entities.Forum                     = require('./entities/resource/forum');
 Caliper.Entities.Frame                     = require('./entities/resource/frame');
 Caliper.Entities.ImageObject               = require('./entities/resource/imageObject');
+Caliper.Entities.Link                     = require('./entities/resource/link');
+Caliper.Entities.LtiLink                  = require('./entities/resource/ltiLink');
 Caliper.Entities.MediaObject               = require('./entities/resource/mediaObject');
 Caliper.Entities.MediaLocation             = require('./entities/resource/mediaLocation');
 Caliper.Entities.Message                   = require('./entities/resource/message');
@@ -283,6 +286,7 @@ Caliper.Entities.VideoObject               = require('./entities/resource/videoO
 Caliper.Entities.WebPage                   = require('./entities/resource/webPage');
 
 // Outcome
+Caliper.Entities.Attempt                   = require('./entities/outcome/attempt');
 Caliper.Entities.Result                    = require('./entities/outcome/result');
 Caliper.Entities.Score                     = require('./entities/outcome/score');
 
@@ -293,6 +297,10 @@ Caliper.Entities.MultipleChoiceResponse    = require('./entities/response/multip
 Caliper.Entities.MultipleResponseResponse  = require('./entities/response/multipleResponseResponse');
 Caliper.Entities.SelectTextResponse        = require('./entities/response/selectTextResponse');
 Caliper.Entities.TrueFalseResponse         = require('./entities/response/trueFalseResponse');
+
+// Search
+Caliper.Entities.Query                   = require('./entities/search/query');
+Caliper.Entities.SearchResponse          = require('./entities/search/searchResponse');
 
 // Session
 Caliper.Entities.Session                   = require('./entities/session/session');
@@ -311,23 +319,24 @@ Caliper.Events.MediaEvent                  = require('./events/mediaEvent');
 Caliper.Events.MessageEvent                = require('./events/messageEvent');
 Caliper.Events.NavigationEvent             = require('./events/navigationEvent');
 Caliper.Events.GradeEvent                  = require('./events/gradeEvent');
+Caliper.Events.SearchEvent                 = require('./events/searchEvent');
 Caliper.Events.SessionEvent                = require('./events/sessionEvent');
 Caliper.Events.ThreadEvent                 = require('./events/threadEvent');
+Caliper.Events.ToolLaunchEvent             = require('./events/toolLaunchEvent');
 Caliper.Events.ToolUseEvent                = require('./events/toolUseEvent');
 Caliper.Events.ViewEvent                   = require('./events/viewEvent');
 
+// Envelope
+Caliper.Envelopes.Envelope                 = require('./envelope');
+
 // Selectors
 Caliper.Selectors.TextPositionSelector     = require('./selectors/textPositionSelector');
-
-// Sensor clients
-Caliper.Clients.ClientUtils                = require('./clients/clientUtils');
-Caliper.Clients.HttpClient                 = require('./clients/httpClient');
-Caliper.Clients.HttpOptions                = require('./clients/httpOptions');
 
 // Validators
 Caliper.Validators.Validator               = require('./validators/validator');
 Caliper.Validators.EntityValidator         = require('./validators/entityValidator');
 Caliper.Validators.EventValidator          = require('./validators/eventValidator');
+Caliper.Validators.ObjectProperties        = require('./validators/objectProperties');
 
 // Replace/Create the global namespace and objects (the sensor) we want there
 Caliper.Sensor = Sensor;

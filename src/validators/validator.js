@@ -22,15 +22,13 @@ var uuid = require('node-uuid');
 var urijs = require('uri-js');
 var validator = require('validator');
 var config = require('../config/config');
-var entityType = require('../entities/entityType');
-var eventType = require('../events/eventType');
 
 /**
  * Check Javascript object type.
  * @param opts
  * @returns {*}
  */
-var checkObjectType = module.exports.checkObjectType = function checkObjectType(opts) {
+function checkObjectType(opts) {
   return Object.prototype.toString.call(opts);
 };
 
@@ -38,7 +36,7 @@ var checkObjectType = module.exports.checkObjectType = function checkObjectType(
  * Generate a RFC 4122 v1 timestamp-based UUID or a v4 "practically random" UUID.  Default is v4.
  * @returns {*}
  */
-module.exports.generateUUID = function generateUUID(version) {
+function generateUUID(version) {
   version = version || config.uuidVersion;
 
   switch(version) {
@@ -54,55 +52,30 @@ module.exports.generateUUID = function generateUUID(version) {
 };
 
 /**
+ * Check action
+ * @param opts
+ * @returns {boolean}
+ */
+function hasAction(opts) {
+  // TODO lookup action based on event
+  return !(_.isNil(opts.action) && _.isEmpty(opts.action));
+};
+
+/**
+ * Check actor
+ * @param opts
+ */
+function hasActor(opts) {
+  return !_.isNil(opts.actor);
+};
+
+/**
  * Check if object has JSON-LD @context property value
  * @param opts
  * @returns {boolean}
  */
-module.exports.hasCaliperContext = function hasCaliperContext(opts) {
-  var regex = /http:\/\/purl.imsglobal.org\/ctx\/caliper\/?v?[0-9]*p?[0-9]*/;
-  var hasCaliperContext = false;
-
-  if (opts.hasOwnProperty('@context')) {
-    switch(checkObjectType(opts['@context'])) {
-      case '[object String]':
-        hasCaliperContext = regex.test(opts['@context']);
-        break;
-      case '[object Array]':
-        for (var i = 0, len = opts['@context'].length; i < len; i++) {
-          if (checkObjectType(opts['@context'][i]) === '[object String]') {
-            if (regex.text(opts['@context'][i])) {
-              hasCaliperContext = true;
-              break;
-            }
-          }
-        }
-        break;
-      case '[object Object]':
-        if (opts['@context'].hasOwnProperty('@vocab')) {
-          hasCaliperContext = regex.test(opts['@context']['@vocab']);
-        }
-
-        if (hasCaliperContext) {
-          break;
-        }
-
-        if (opts['@context'].hasOwnProperty('@base')) {
-          hasCaliperContext = regex.test(opts['@context']['@base']);
-        }
-        break;
-    }
-  }
-
-  return hasCaliperContext;
-};
-
-/**
- * Check if object has JSON-LD @context extension property value
- * @param opts
- * @returns {boolean}
- */
-module.exports.hasCaliperContextExtension = function hasCaliperContextExtension(opts) {
-  var regex = /http:\/\/purl.imsglobal.org\/ctx\/caliper\/?v?[0-9]*p?[0-9]*\/[A-Za-z]*Profile-extension/;
+function hasCaliperContext(opts) {
+  const regex = RegExp('http:\\/\\/purl.imsglobal.org\\/ctx\\/caliper\\/?v?[0-9]*p?[0-9]*');
   var hasCaliperContext = false;
 
   if (opts.hasOwnProperty('@context')) {
@@ -143,53 +116,8 @@ module.exports.hasCaliperContextExtension = function hasCaliperContextExtension(
  * Check for JSON-LD context
  * @returns {boolean}
  */
-module.exports.hasContext = function hasContext() {
+function hasContext() {
   return !_.isNil(opts["@context"]);
-};
-
-/**
- * Check if id is undefined, null or empty.  Given that nearly any string could constitute a URI
- * @param opts
- * @returns {boolean}
- */
-module.exports.hasId = function hasId(opts) {
-  return !(_.isNil(opts.id) && _.isEmpty(opts.id));
-};
-
-/**
- * Check if type is undefined, null or empty.
- * @param opts
- * @returns {boolean}
- */
-module.exports.hasType = function hasType(opts) {
-  return !(_.isNil(opts.type) && _.isEmpty(opts.type));
-};
-
-/**
- * Check actor
- * @param opts
- */
-module.exports.hasActor = function hasActor(opts) {
-  return !_.isNil(opts.actor);
-};
-
-/**
- * Check action
- * @param opts
- * @returns {boolean}
- */
-module.exports.hasAction = function hasAction(opts) {
-  // TODO lookup action based on event
-  return !(_.isNil(opts.action) && _.isEmpty(opts.action));
-};
-
-/**
- * Check object
- * @param opts
- * @returns {boolean}
- */
-module.exports.hasObject = function hasObject(opts) {
-  return !_.isNil(opts.object);
 };
 
 /**
@@ -197,7 +125,7 @@ module.exports.hasObject = function hasObject(opts) {
  * @param opts
  * @returns {boolean|*}
  */
-module.exports.hasEventTime = function hasEventTime(opts) {
+function hasEventTime(opts) {
   var hasDateTime = false;
   if (!(_.isNil(opts.eventTime) && _.isEmpty(opts.eventTime))) {
     if (moment.isMoment(opts.eventTime)) {
@@ -211,10 +139,37 @@ module.exports.hasEventTime = function hasEventTime(opts) {
 };
 
 /**
+ * Check if id is undefined, null or empty.  Given that nearly any string could constitute a URI
+ * @param opts
+ * @returns {boolean}
+ */
+function hasId(opts) {
+  return !(_.isNil(opts.id) && _.isEmpty(opts.id));
+};
+
+/**
+ * Check object
+ * @param opts
+ * @returns {boolean}
+ */
+function hasObject(opts) {
+  return !_.isNil(opts.object);
+};
+
+/**
+ * Check if type is undefined, null or empty.
+ * @param opts
+ * @returns {boolean}
+ */
+function hasType(opts) {
+  return !(_.isNil(opts.type) && _.isEmpty(opts.type));
+};
+
+/**
  * Check if String can be parsed as a URI
  * @type {exports.hasURI}
  */
-var hasUri = module.exports.hasUri = function hasUri(opts) {
+function hasUri(opts) {
   if (!(_.isNil(opts.id))) {
     var uri = urijs.parse(opts.id);
 
@@ -233,13 +188,34 @@ var hasUri = module.exports.hasUri = function hasUri(opts) {
  * Check if string is a UUID URN.
  * @type {exports.isUri}
  */
-var hasUuidUrn = module.exports.hasUuidUrn = function hasUuidUrn(opts) {
+function hasUuidUrn(opts) {
   if (!(_.isNil(opts.id))) {
     var uri = urijs.parse(opts.id);
     return uri.scheme === "urn:uuid" && isUuid(uri.path) ? true : false;
   } else {
     return false;
   }
+};
+
+/**
+ * Check if string is a blank node.
+ * @type {exports.isBlankNode}
+ */
+function isBlankNode(opts) {
+  if (!(_.isNil(opts.id))) {
+    return _.startsWith("_:") ? true : false;
+  } else {
+    return false;
+  }
+};
+
+/**
+ * Check if JSON-LD context values is a Caliper context.
+ * @type {function(*): boolean}
+ */
+function isCaliperContext(val) {
+  const regex = RegExp('http:\\/\\/purl.imsglobal.org\\/ctx\\/caliper\\/?v?[0-9]*p?[0-9]*');
+  return regex.test(val);
 };
 
 /**
@@ -252,23 +228,11 @@ var isISO8601 = module.exports.isISO8601 = function isISO8601(str) {
 };
 
 /**
- * Check if string is a blank node.
- * @type {exports.isBlankNode}
- */
-var isBlankNode = module.exports.isBlankNode = function isBlankNode(opts) {
-  if (!(_.isNil(opts.id))) {
-    return _.startsWith("_:") ? true : false;
-  } else {
-    return false;
-  }
-};
-
-/**
  * Validate UUID value. validator.isUUID(str [, version]) - check if the string is a UUID (version 3, 4 or 5).
  * @param uuid
  * @returns {*}
  */
-var isUuid = module.exports.isUuid = function isUuid(uuid) {
+var isUuid = function isUuid(uuid) {
   return validator.isUUID(uuid);
 };
 
@@ -281,7 +245,7 @@ var isUuid = module.exports.isUuid = function isUuid(uuid) {
  * @param opts
  * @returns {*}
  */
-module.exports.moveToExtensions = function moveToExtensions(proto, opts) {
+function moveToExtensions(proto, opts) {
   var protoKeys = _.keysIn(proto);
   var optsKeys = _.keys(opts);
   var opts = {};
@@ -315,4 +279,39 @@ module.exports.moveToExtensions = function moveToExtensions(proto, opts) {
   }
 
   return opts;
+};
+
+/**
+ * Remove @context property if value corresponds to the IMS Caliper context IRI.
+ * @param obj
+ * @returns {*}
+ */
+function removeContext(obj) {
+  if (obj.hasOwnProperty("@context")) {
+    if (isCaliperContext(obj["@context"])) {
+      delete obj["@context"];
+    }
+  }
+  return obj;
+};
+
+module.exports = {
+  checkObjectType: checkObjectType,
+  generateUUID: generateUUID,
+  hasAction: hasAction,
+  hasActor: hasActor,
+  hasCaliperContext: hasCaliperContext,
+  hasContext: hasContext,
+  hasEventTime: hasEventTime,
+  hasId: hasId,
+  hasObject: hasObject,
+  hasType: hasType,
+  hasUri: hasUri,
+  hasUuidUrn: hasUuidUrn,
+  isBlankNode: isBlankNode,
+  isCaliperContext: isCaliperContext,
+  isISO8601: isISO8601,
+  isUuid: isUuid,
+  moveToExtensions: moveToExtensions,
+  removeContext: removeContext
 };

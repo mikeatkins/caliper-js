@@ -24,17 +24,13 @@ var validator = require('./validator');
  * @param opts
  * @returns {*}
  */
-module.exports.checkOpts = function opts(delegate, opts) {
+function checkOpts(delegate, opts) {
   Object.keys(opts).forEach(function(key) {
     switch (key) {
       case "@context":
-        if (validator.hasCaliperContextExtension(opts))
+        if (validator.hasCaliperContext(delegate)) {
+          delete opts['@context']; // suppress
           break;
-        else {
-          if (validator.hasCaliperContext(delegate)) {
-            delete opts['@context']; // suppress
-            break;
-          }
         }
       case "type":
         if (validator.hasType(delegate)) {
@@ -50,3 +46,5 @@ module.exports.checkOpts = function opts(delegate, opts) {
   });
   return opts;
 };
+
+module.exports.checkOpts = checkOpts;

@@ -189,6 +189,11 @@ var entityType = {
     term: "Person",
     iri: "http://purl.imsglobal.org/caliper/Person"
   },
+  query: {
+    context: config.jsonldContext.v1p1_search,
+    term: "Query",
+    iri: "http://purl.imsglobal.org/caliper/Query"
+  },
   response: {
     context: config.jsonldContext.v1p1,
     term: "Response",
@@ -203,6 +208,11 @@ var entityType = {
     context: config.jsonldContext.v1p1,
     term: "Score",
     iri: "http://purl.imsglobal.org/caliper/Score"
+  },
+  searchResponse: {
+    context: config.jsonldContext.v1p1_search,
+    term: "SearchResponse",
+    iri: "http://purl.imsglobal.org/caliper/SearchResponse"
   },
   selectTextResponse: {
     context: config.jsonldContext.v1p1,

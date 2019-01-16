@@ -37,7 +37,6 @@ testUtils.readFile(path, function(err, fixture) {
         t.plan(1);
 
         var entity = entityFactory().create(LtiLink, {
-            '@context': "http://purl.imsglobal.org/ctx/caliper/v1p1/ToolLaunchProfile-extension",
             id: "https://tool.com/link/123",
             messageType: "LtiResourceLinkRequest"
         });
