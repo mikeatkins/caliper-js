@@ -80,7 +80,7 @@ testUtils.readFile(path, function(err, fixture) {
 
         // Generated SearchResponse
         var generated = entityFactory().create(SearchResponse, {
-            id: "https://example.edu/users/554433/search?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29",
+            id: "https://example.edu/users/554433/response?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29",
             searchProvider: "https://example.edu",
             searchTarget: "https://example.edu/catalog",
             query: query,
