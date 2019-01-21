@@ -69,6 +69,11 @@ var eventType = {
     term: "NavigationEvent",
     iri: "http://purl.imsglobal.org/caliper/NavigationEvent"
   },
+  resourceManagement: {
+    context: config.jsonldContext.v1p1_resourceManagement,
+    term: "ResourceManagementEvent",
+    iri: "http://purl.imsglobal.org/caliper/ResourceManagementEvent"
+  },
   search: {
     context: config.jsonldContext.v1p1_search,
     term: "SearchEvent",
@@ -85,7 +90,7 @@ var eventType = {
     iri: "http://purl.imsglobal.org/caliper/ThreadEvent"
   },
   toolLaunch: {
-    context: config.jsonldContext.v1p1_toollaunch,
+    context: config.jsonldContext.v1p1_toolLaunch,
     term: "ToolLaunchEvent",
     iri: "http://purl.imsglobal.org/caliper/ToolLaunchEvent"
   },

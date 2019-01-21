@@ -35,6 +35,11 @@ var actions = {
     iri: "http://purl.imsglobal.org/caliper/actions/Activated",
     events: ["event", "assignableEvent"]
   },
+  archived: {
+    term: "Archived",
+    iri: "http://purl.imsglobal.org/caliper/actions/Archived",
+    events: ["event", "resourceManagementEvent"]
+  },
   attached: {
     term: "Attached",
     iri: "http://purl.imsglobal.org/caliper/actions/Attached",
@@ -85,10 +90,15 @@ var actions = {
     iri: "http://purl.imsglobal.org/caliper/actions/Completed",
     events: ["event", "assessmentItemEvent", "assignableEvent"]
   },
+  copied: {
+    term: "Copied",
+    iri: "http://purl.imsglobal.org/caliper/actions/Copied",
+    events: ["event", "resourceManagementEvent"]
+  },
   created: {
     term: "Created",
     iri: "http://purl.imsglobal.org/caliper/actions/Created",
-    events: ["event"]
+    events: ["event", "resourceManagementEvent"]
   },
   deactivated: {
     term: "Deactivated",
@@ -98,12 +108,12 @@ var actions = {
   deleted: {
     term: "Deleted",
     iri: "http://purl.imsglobal.org/caliper/actions/Deleted",
-    events: ["event"]
+    events: ["event", "resourceManagementEvent"]
   },
   described: {
     term: "Described",
     iri: "http://purl.imsglobal.org/caliper/actions/Described",
-    events: ["event"]
+    events: ["event", "resourceManagementEvent"]
   },
   disabledClosedCaptioning: {
     term: "DisabledClosedCaptioning",
@@ -203,7 +213,7 @@ var actions = {
   modified: {
     term: "Modified",
     iri: "http://purl.imsglobal.org/caliper/actions/Modified",
-    events: ["event"]
+    events: ["event", "resourceManagementEvent"]
   },
   muted: {
     term: "Muted",
@@ -229,6 +239,11 @@ var actions = {
     term: "Posted",
     iri: "http://purl.imsglobal.org/caliper/actions/Posted",
     events: ["event", "messageEvent"]
+  },
+  published: {
+    term: "Published",
+    iri: "http://purl.imsglobal.org/caliper/actions/Published",
+    events: ["event", "resourceManagementEvent"]
   },
   questioned: {
     term: "Questioned",
@@ -260,6 +275,11 @@ var actions = {
     iri: "http://purl.imsglobal.org/caliper/actions/Restarted",
     events: ["event", "assessmentEvent", "mediaEvent"]
   },
+  restored: {
+    term: "Restored",
+    iri: "http://purl.imsglobal.org/caliper/actions/Restored",
+    events: ["event", "resourceManagementEvent"]
+  },
   resumed: {
     term: "Resumed",
     iri: "http://purl.imsglobal.org/caliper/actions/Resumed",
@@ -268,7 +288,7 @@ var actions = {
   retrieved: {
     term: "Retrieved",
     iri: "http://purl.imsglobal.org/caliper/actions/Retrieved",
-    events: ["event"]
+    events: ["event", "resourceManagementEvent"]
   },
   returned: {
     term: "Returned",
@@ -334,6 +354,11 @@ var actions = {
     term: "Unmuted",
     iri: "http://purl.imsglobal.org/caliper/actions/Unmuted",
     events: ["event", "mediaEvent"]
+  },
+  unpublished: {
+    term: "Unpublished",
+    iri: "http://purl.imsglobal.org/caliper/actions/Unpublished",
+    events: ["event", "resourceManagementEvent"]
   },
   unsubscribed: {
     term: "Unsubscribed",
