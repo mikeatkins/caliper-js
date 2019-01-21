@@ -130,12 +130,12 @@ var entityType = {
     iri: "http://purl.imsglobal.org/caliper/LearningObjective"
   },
   link: {
-    context: config.jsonldContext.v1p1_toollaunch,
+    context: config.jsonldContext.v1p1_toolLaunch,
     term: "Link",
     iri: "http://purl.imsglobal.org/caliper/Link"
   },
   ltiLink: {
-    context: config.jsonldContext.v1p1_toollaunch,
+    context: config.jsonldContext.v1p1_toolLaunch,
     term: "LtiLink",
     iri: "http://purl.imsglobal.org/caliper/LtiLink"
   },
