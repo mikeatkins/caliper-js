@@ -92,7 +92,7 @@ testUtils.readFile(path, function(err, fixture) {
         var eventTime = moment.utc("2018-11-15T10:05:00.000Z");
 
         var generated = entityFactory().create(DigitalResource, {
-            id: BASE_SECTION_IRI.concat("/resources/2/syllabus_copy.pdf"),
+            id: BASE_SECTION_IRI.concat("/resources/1/syllabus_copy.pdf"),
             name: "Course Syllabus (copy)",
             "mediaType": "application/pdf",
             creators: creators,
