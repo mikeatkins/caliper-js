@@ -52,7 +52,7 @@ testUtils.readFile(path, function(err, fixture) {
         var BASE_SECTION_IRI = "https://example.edu/terms/201801/courses/7/sections/1";
 
         // Id with canned value
-        uuid = "urn:uuid:0c81f804-62ee-4953-81c5-62d9579c4369";
+        uuid = "urn:uuid:d3543a73-e307-4190-a755-5ce7b3187bc5";
 
         // The Actor
         var actor = entityFactory().create(Person, {id: BASE_IRI.concat("/users/554433")});
