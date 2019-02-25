@@ -28,11 +28,11 @@ var validator = require('./validator');
 function checkOpts(delegate, opts) {
   Object.keys(delegate).forEach(function(key) {
     switch (key) {
-      case "@context":
-        if (validator.hasCaliperContext(delegate)) {
-          delete opts['@context']; // suppress
-        }
-        break;
+      // case "@context":
+      //   if (validator.hasCaliperContext(delegate)) {
+      //     delete opts['@context']; // suppress
+      //   }
+      //   break;
       case "type":
         if (validator.hasType(delegate)) {
           delete opts.type; // suppress

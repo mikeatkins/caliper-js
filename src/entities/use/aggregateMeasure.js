@@ -16,35 +16,21 @@
  * with this program. If not, see http://www.gnu.org/licenses/.
  */
 
-var validator = require('./validator');
+var _ = require('lodash');
+var entity = require('../entity');
+var entityType = require('../entityType').aggregateMeasure;
 
 /**
- * Check required Entity properties against set of user-supplied values
- * @param delegate
- * @param opts
- * @returns {*}
+ * Link AggregateMeasure to delegate Entity and assign default property values.
  */
-function checkOpts(delegate, opts) {
-  Object.keys(opts).forEach(function(key) {
-    switch (key) {
-      // case "@context":
-      //   if (validator.hasCaliperContext(delegate)) {
-      //     delete opts['@context']; // suppress
-      //     break;
-      //   }
-      case "type":
-        if (validator.hasType(delegate)) {
-          delete opts.type; // suppress
-        }
-        break;
-      case "id":
-        if (!validator.hasUri(opts)) {
-          throw new Error("Required identifier not provided");
-        }
-        break;
-    }
-  });
-  return opts;
-};
+var AggregateMeasure = _.assign({}, entity, {
+    '@context': entityType.context,
+    type: entityType.term,
+    metric: null,
+    value: null,
+    valueMax: null,
+    startedAtTime: null,
+    endedAtTime: null
+});
 
-module.exports.checkOpts = checkOpts;
+module.exports = AggregateMeasure;
