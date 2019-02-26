@@ -232,7 +232,8 @@ Caliper.Clients.HttpClient                 = require('./clients/httpClient');
 Caliper.Clients.HttpOptions                = require('./clients/httpOptions');
 
 // Config
-Caliper.Config.Config                     = require('./config/config');
+Caliper.Config.Config                      = require('./config/config');
+Caliper.Config.Contexts                    = require('./config/contexts');
 
 // Entities
 Caliper.Entities.Entity                   = require('./entities/entity');
