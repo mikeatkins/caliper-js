@@ -42,7 +42,7 @@ testUtils.readFile(path, function(err, fixture) {
             id: "urn:uuid:21c3f9f2-a9ef-4f65-bf9a-0699ed85e2c7",
             metric: metric.minutesOnTask.term,
             name: "Minutes On Task",
-            value: 873,
+            metricValue: 873,
             startedAtTime: moment.utc("2019-08-15T10:15:00.000Z"),
             endedAtTime: moment.utc("2019-11-15T10:15:00.000Z")
         });
@@ -51,8 +51,8 @@ testUtils.readFile(path, function(err, fixture) {
             id: "urn:uuid:c3ba4c01-1f17-46e0-85dd-1e366e6ebb81",
             metric: metric.unitsCompleted.term,
             name: "Units Completed",
-            value: 12.0,
-            valueMax: 25.0,
+            metricValue: 12.0,
+            metricValueMax: 25.0,
             startedAtTime: moment.utc("2019-08-15T10:15:00.000Z"),
             endedAtTime: moment.utc("2019-11-15T10:15:00.000Z")
         });

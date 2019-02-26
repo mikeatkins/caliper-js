@@ -32,6 +32,9 @@ var eventFactory = function eventFactory() {
       delegate = delegate || event;
       opts = opts || {};
 
+      // Check payload contexts
+      delegate = validator.hoistContext(delegate, opts);
+
       // Validate user-supplied values
       if (!_.isEmpty(opts)) {
         opts = validator.checkOpts(delegate, opts);

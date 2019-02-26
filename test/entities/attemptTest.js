@@ -50,9 +50,9 @@ testUtils.readFile(path, function(err, fixture) {
       assignee: assignee,
       assignable: assignable,
       count: 1,
-      dateCreated: "2016-11-15T10:05:00.000Z",
-      startedAtTime: "2016-11-15T10:05:00.000Z",
-      endedAtTime: "2016-11-15T10:55:30.000Z",
+      dateCreated: moment.utc("2016-11-15T10:05:00.000Z"),
+      startedAtTime: moment.utc("2016-11-15T10:05:00.000Z"),
+      endedAtTime: moment.utc("2016-11-15T10:55:30.000Z"),
       duration: "PT50M30S"
     });
 

@@ -76,19 +76,19 @@ testUtils.readFile(path, function(err, fixture) {
         // Generated Progress
         var measure01 = entityFactory().create(AggregateMeasure, {
             id: "urn:uuid:21c3f9f2-a9ef-4f65-bf9a-0699ed85e2c7",
-            metric: metric.minutesOnTask.term,
             name: "Minutes On Task",
-            value: 873.0,
+            metric: metric.minutesOnTask.term,
+            metricValue: 873.0,
             startedAtTime: moment.utc("2019-08-15T10:15:00.000Z"),
             endedAtTime: moment.utc("2019-11-15T10:15:00.000Z")
         });
 
         var measure02 = entityFactory().create(AggregateMeasure, {
             id: "urn:uuid:c3ba4c01-1f17-46e0-85dd-1e366e6ebb81",
-            metric: metric.unitsCompleted.term,
             name: "Units Completed",
-            value: 12.0,
-            valueMax: 25.0,
+            metric: metric.unitsCompleted.term,
+            metricValue: 12.0,
+            metricValueMax: 25.0,
             startedAtTime: moment.utc("2019-08-15T10:15:00.000Z"),
             endedAtTime: moment.utc("2019-11-15T10:15:00.000Z")
         });
@@ -165,91 +165,3 @@ testUtils.readFile(path, function(err, fixture) {
         //t.end();
     });
 });
-
-
-
-/**
-{
-    "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1/ToolUseProfile-extension",
-    "id": "urn:uuid:7e10e4f3-a0d8-4430-95bd-783ffae4d916",
-    "type": "ToolUseEvent",
-    "actor": {
-    "id": "https://example.edu/users/554433",
-        "type": "Person"
-},
-    "action": "Used",
-    "object": {
-    "id": "https://example.edu",
-        "type": "SoftwareApplication"
-},
-    "eventTime": "2019-11-15T10:15:00.000Z",
-    "edApp": "https://example.edu",
-    "generated": {
-    "id": "urn:uuid:7e10e4f3-a0d8-4430-95bd-783ffae4d912",
-        "type": "AggregateMeasureCollection",
-        "items": [
-        {
-            "id": "urn:uuid:21c3f9f2-a9ef-4f65-bf9a-0699ed85e2c7",
-            "type": "AggregateMeasure",
-            "metric": "MinutesOnTask",
-            "name": "Minutes On Task",
-            "value": 873.0,
-            "startedAtTime": "2019-08-15T10:15:00.000Z",
-            "endedAtTime": "2019-11-15T10:15:00.000Z"
-        },
-        {
-            "id": "urn:uuid:c3ba4c01-1f17-46e0-85dd-1e366e6ebb81",
-            "type": "AggregateMeasure",
-            "metric": "UnitsCompleted",
-            "name": "Units Completed",
-            "value": 12.0,
-            "valueMax": 25.0,
-            "startedAtTime": "2019-08-15T10:15:00.000Z",
-            "endedAtTime": "2019-11-15T10:15:00.000Z"
-        }
-    ]
-},
-    "group": {
-    "id": "https://example.edu/terms/201601/courses/7/sections/1",
-        "type": "CourseSection",
-        "academicSession": "Fall 2016",
-        "courseNumber": "CPS 435-01",
-        "name": "CPS 435 Learning Analytics, Section 01",
-        "category": "seminar",
-        "subOrganizationOf": {
-        "id": "https://example.edu/terms/201601/courses/7",
-            "type": "CourseOffering",
-            "courseNumber": "CPS 435"
-    },
-    "dateCreated": "2016-08-01T06:00:00.000Z"
-},
-    "membership": {
-    "id": "https://example.edu/terms/201601/courses/7/sections/1/rosters/1/members/554433",
-        "type": "Membership",
-        "member": {
-        "id": "https://example.edu/users/554433",
-            "type": "Person"
-    },
-    "organization": {
-        "id": "https://example.edu/terms/201601/courses/7/sections/1",
-            "type": "CourseSection",
-            "subOrganizationOf": {
-            "id": "https://example.edu/terms/201601/courses/7",
-                "type": "CourseOffering"
-        }
-    },
-    "roles": [ "Learner" ],
-        "status": "Active",
-        "dateCreated": "2016-11-01T06:00:00.000Z"
-},
-    "session": {
-    "id": "https://example.edu/sessions/1f6442a482de72ea6ad134943812bff564a76259",
-        "type": "Session",
-        "user": {
-        "id": "https://example.edu/users/554433",
-            "type": "Person"
-    },
-    "startedAtTime": "2016-09-15T10:00:00.000Z"
-}
-}
-*/

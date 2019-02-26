@@ -27,8 +27,8 @@ var AggregateMeasure = _.assign({}, entity, {
     '@context': entityType.context,
     type: entityType.term,
     metric: null,
-    value: null,
-    valueMax: null,
+    metricValue: null,
+    metricValueMax: null,
     startedAtTime: null,
     endedAtTime: null
 });
