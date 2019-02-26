@@ -232,7 +232,8 @@ Caliper.Clients.HttpClient                 = require('./clients/httpClient');
 Caliper.Clients.HttpOptions                = require('./clients/httpOptions');
 
 // Config
-Caliper.Config.Config                     = require('./config/config');
+Caliper.Config.Config                      = require('./config/config');
+Caliper.Config.Contexts                    = require('./config/contexts');
 
 // Entities
 Caliper.Entities.Entity                   = require('./entities/entity');
@@ -299,12 +300,17 @@ Caliper.Entities.SelectTextResponse        = require('./entities/response/select
 Caliper.Entities.TrueFalseResponse         = require('./entities/response/trueFalseResponse');
 
 // Search
-Caliper.Entities.Query                   = require('./entities/search/query');
-Caliper.Entities.SearchResponse          = require('./entities/search/searchResponse');
+Caliper.Entities.Query                     = require('./entities/search/query');
+Caliper.Entities.SearchResponse            = require('./entities/search/searchResponse');
 
 // Session
 Caliper.Entities.Session                   = require('./entities/session/session');
 Caliper.Entities.LtiSession                = require('./entities/session/ltiSession');
+
+// Use
+Caliper.Entities.AggregateMeasure             = require('./entities/use/aggregateMeasure');
+Caliper.Entities.AggregateMeasureCollection   = require('./entities/use/aggregateMeasureCollection');
+Caliper.Entities.Metric                       = require('./entities/use/metric');
 
 // Events
 Caliper.Events.Event                       = require('./events/event');

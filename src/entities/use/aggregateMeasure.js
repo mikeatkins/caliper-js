@@ -17,33 +17,20 @@
  */
 
 var _ = require('lodash');
-var event = require('./event');
-var validator = require('../validators/eventValidator');
+var entity = require('../entity');
+var entityType = require('../entityType').aggregateMeasure;
 
 /**
- * Factory function that returns a mutated object based on a delegate prototype when the
- * factory create method is invoked. All enumerable string keyed properties included in
- * the other sources are also assigned to the created object in the order provided.
- * @returns {{create: create}}
+ * Link AggregateMeasure to delegate Entity and assign default property values.
  */
-var eventFactory = function eventFactory() {
-  return {
-    create: function create(delegate, opts) {
-      delegate = delegate || event;
-      opts = opts || {};
+var AggregateMeasure = _.assign({}, entity, {
+    '@context': entityType.context,
+    type: entityType.term,
+    metric: null,
+    metricValue: null,
+    metricValueMax: null,
+    startedAtTime: null,
+    endedAtTime: null
+});
 
-      // Check payload contexts
-      delegate = validator.hoistContext(delegate, opts);
-
-      // Validate user-supplied values
-      if (!_.isEmpty(opts)) {
-        opts = validator.checkOpts(delegate, opts);
-      }
-
-      // Compose object
-      return _.assign({}, delegate, opts);
-    }
-  }
-};
-
-module.exports = eventFactory;
+module.exports = AggregateMeasure;

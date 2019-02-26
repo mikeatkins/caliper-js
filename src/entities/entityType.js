@@ -24,6 +24,16 @@ var entityType = {
     term: "Agent",
     iri: "http://purl.imsglobal.org/caliper/Agent"
   },
+  aggregateMeasure: {
+    context: config.jsonldContext.v1p1_toolUse,
+    term: "AggregateMeasure",
+    iri: "http://purl.imsglobal.org/caliper/AggregateMeasure"
+  },
+  aggregateMeasureCollection: {
+    context: config.jsonldContext.v1p1_toolUse,
+    term: "AggregateMeasureCollection",
+    iri: "http://purl.imsglobal.org/caliper/AggregateMeasureCollection"
+  },
   annotation: {
     context: config.jsonldContext.v1p1,
     term: "Annotation",

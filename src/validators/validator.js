@@ -86,7 +86,7 @@ function hasCaliperContext(opts) {
       case '[object Array]':
         for (var i = 0, len = opts['@context'].length; i < len; i++) {
           if (checkObjectType(opts['@context'][i]) === '[object String]') {
-            if (regex.text(opts['@context'][i])) {
+            if (regex.test(opts['@context'][i])) {
               hasCaliperContext = true;
               break;
             }

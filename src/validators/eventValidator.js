@@ -17,7 +17,66 @@
  */
 
 var config = require('../config/config');
+var contexts = require('../config/contexts');
 var validator = require('./validator');
+
+
+function hoistContext(delegate, opts) {
+  const regex = RegExp('http:\\/\\/purl.imsglobal.org\\/ctx\\/caliper\\/?v?[0-9]*p?[0-9]*');
+
+  //1. Check type
+  //2. If extension
+  //3. Check payload for entities that default to extension
+  //4. Check entity type
+  //4. If found update event context
+
+  var delegatePrecedence = checkContextPrecedence(delegate["@context"]);
+  // console.log("Delegate Precedence =", delegatePrecedence);
+
+  for (var key in opts) {
+    if (opts.hasOwnProperty(key)) {
+      if (typeof opts[key] == "object" && opts[key] !== null) {
+        hoistContext(delegate, opts[key]); // recursive
+      }
+      else {
+        if (key == "@context") {
+          if (regex.test(opts[key]) && opts[key] != delegate["@context"]) {
+            var optsPrecedence = checkContextPrecedence(opts[key]);
+            // console.log("Opts Precedence =", optsPrecedence);
+
+            if (optsPrecedence > delegatePrecedence) {
+              // console.log("Opts Precedence is greater");
+              delegate["@context"] = opts[key] // hoist
+            }
+          }
+        }
+      }
+    } else {
+      continue;
+    }
+  }
+
+  return delegate;
+}
+
+/**
+ * Return Caliper JSON-LD context precedence
+ * @param obj
+ * @returns {number}
+ */
+function checkContextPrecedence(val) {
+
+  // TODO val could be string, obj, or array
+
+  var precedence = 0;
+  for (var i = 0; i < contexts.length; i++) {
+    if (contexts[i].iri == val) {
+      precedence = contexts[i].precedence;
+      break;
+    }
+  }
+  return precedence;
+}
 
 /**
  * Check required Event properties against set of user-supplied values
@@ -72,4 +131,7 @@ function checkOpts(delegate, opts) {
   return opts;
 };
 
-module.exports.checkOpts = checkOpts;
+module.exports = {
+  hoistContext: hoistContext,
+  checkOpts: checkOpts
+};
