@@ -125,6 +125,11 @@ var actions = {
     iri: "http://purl.imsglobal.org/caliper/actions/Disliked",
     events: ["event"]
   },
+  downloaded: {
+    term: "Downloaded",
+    iri: "http://purl.imsglobal.org/caliper/actions/Downloaded",
+    events: ["event", "resourceManagementEvent"]
+  },
   enabledClosedCaptioning: {
     term: "EnabledClosedCaptioning",
     iri: "http://purl.imsglobal.org/caliper/actions/EnabledClosedCaptioning",
@@ -240,6 +245,11 @@ var actions = {
     iri: "http://purl.imsglobal.org/caliper/actions/Posted",
     events: ["event", "messageEvent"]
   },
+  printed: {
+    term: "Printed",
+    iri: "http://purl.imsglobal.org/caliper/actions/Printed",
+    events: ["event", "resourceManagementEvent"]
+  },
   published: {
     term: "Published",
     iri: "http://purl.imsglobal.org/caliper/actions/Published",
@@ -305,6 +315,11 @@ var actions = {
     iri: "http://purl.imsglobal.org/caliper/actions/Rewound",
     events: ["event", "mediaEvent"]
   },
+  saved: {
+    term: "Saved",
+    iri: "http://purl.imsglobal.org/caliper/actions/Saved",
+    events: ["event", "resourceManagementEvent"]
+  },
   searched: {
     term: "Searched",
     iri: "http://purl.imsglobal.org/caliper/actions/Searched",
@@ -364,6 +379,11 @@ var actions = {
     term: "Unsubscribed",
     iri: "http://purl.imsglobal.org/caliper/actions/Unsubscribed",
     events: ["event", "forumEvent"]
+  },
+  uploaded: {
+    term: "Uploaded",
+    iri: "http://purl.imsglobal.org/caliper/actions/Uploaded",
+    events: ["event", "resourceManagementEvent"]
   },
   used: {
     term: "Used",
