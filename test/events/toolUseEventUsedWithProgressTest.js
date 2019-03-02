@@ -144,7 +144,6 @@ testUtils.readFile(path, function(err, fixture) {
 
         // Assert that key attributes are the same
         var event = eventFactory().create(ToolUseEvent, {
-            "@context": config.jsonldContext.v1p1_toolUse,
             id: uuid,
             actor: actor,
             action: action,

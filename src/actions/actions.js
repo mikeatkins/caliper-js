@@ -83,7 +83,7 @@ var actions = {
   commented: {
     term: "Commented",
     iri: "http://purl.imsglobal.org/caliper/actions/Commented",
-    events: ["event"]
+    events: ["event", "feedbackEvent"]
   },
   completed: {
     term: "Completed",
@@ -263,7 +263,7 @@ var actions = {
   ranked: {
     term: "Ranked",
     iri: "http://purl.imsglobal.org/caliper/actions/Ranked",
-    events: ["event"]
+    events: ["event", "feedbackEvent"]
   },
   recommended: {
     term: "Recommended",

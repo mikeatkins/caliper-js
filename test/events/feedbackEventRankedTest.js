@@ -22,15 +22,18 @@ var test = require('tape');
 
 var config = require('../../src/config/config');
 var eventFactory = require('../../src/events/eventFactory');
-var ResourceManagementEvent = require('../../src/events/resourceManagementEvent');
+var FeedbackEvent = require('../../src/events/feedbackEvent');
 var actions = require('../../src/actions/actions');
 
 var entityFactory = require('../../src/entities/entityFactory');
+var Comment = require('../../src/entities/survey/comment');
 var CourseSection = require('../../src/entities/agent/courseSection');
 var DigitalResource = require('../../src/entities/resource/digitalResource');
 var DigitalResourceCollection = require('../../src/entities/resource/digitalResourceCollection');
+var LikertScale = require('../../src/entities/survey/likertScale');
 var Membership = require('../../src/entities/agent/membership');
 var Person = require('../../src/entities/agent/person');
+var Rating = require('../../src/entities/survey/rating');
 var Role = require('../../src/entities/agent/role');
 var Session = require('../../src/entities/session/session');
 var SoftwareApplication = require('../../src/entities/agent/softwareApplication');
@@ -38,12 +41,12 @@ var Status = require('../../src/entities/agent/status');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEventResourceManagementCopied.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEventFeedbackRanked.json";
 
 testUtils.readFile(path, function(err, fixture) {
     if (err) throw err;
 
-    test('viewEventResourceManagementCopiedTest', function (t) {
+    test('feedbackEventRankedTest', function (t) {
 
         // Plan for N assertions
         t.plan(1);
@@ -52,7 +55,7 @@ testUtils.readFile(path, function(err, fixture) {
         var BASE_SECTION_IRI = "https://example.edu/terms/201801/courses/7/sections/1";
 
         // Id with canned value
-        uuid = "urn:uuid:d3543a73-e307-4190-a755-5ce7b3187bc5";
+        uuid = "urn:uuid:a502e4fc-24c1-11e9-ab14-d663bd873d93";
 
         // The Actor
         var actor = entityFactory().create(Person, {id: BASE_IRI.concat("/users/554433")});
@@ -65,11 +68,7 @@ testUtils.readFile(path, function(err, fixture) {
         });
 
         // The Action
-        var action = actions.copied.term;
-
-        // Creators
-        var creators = [];
-        creators.push(actor);
+        var action = actions.ranked.term;
 
         // DigitalResourceCollection
         var collection = entityFactory().create(DigitalResourceCollection, {
@@ -83,7 +82,6 @@ testUtils.readFile(path, function(err, fixture) {
             id: BASE_SECTION_IRI.concat("/resources/1/syllabus.pdf"),
             name: "Course Syllabus",
             mediaType: "application/pdf",
-            creators: creators,
             isPartOf: collection,
             dateCreated: moment.utc("2018-08-02T11:32:00.000Z")
         });
@@ -91,13 +89,31 @@ testUtils.readFile(path, function(err, fixture) {
         // Event time
         var eventTime = moment.utc("2018-11-15T10:05:00.000Z");
 
-        var generated = entityFactory().create(DigitalResource, {
-            id: BASE_SECTION_IRI.concat("/resources/1/syllabus_copy.pdf"),
-            name: "Course Syllabus (copy)",
-            "mediaType": "application/pdf",
-            creators: creators,
-            isPartOf: collection,
-            dateCreated: moment.utc("2018-11-15T10:05:00.000Z")
+        var likertScale = entityFactory().create(LikertScale, {
+            id: BASE_IRI.concat("/scale/2"),
+            points: 4,
+            question: "Do you agree with the opinion presented?",
+            itemLabels: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"],
+            itemValues: [-2, -1, 1, 2],
+            dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
+        });
+
+        var comment = entityFactory().create(Comment, {
+            id: BASE_SECTION_IRI.concat("/assess/1/items/6/users/665544/responses/1/comment/1"),
+            commenter: actor,
+            commentedOn: obj,
+            value: "I like what you did here but you need to improve on...",
+            dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
+        });
+
+        var generated = entityFactory().create(Rating, {
+            id: BASE_IRI.concat("/users/554433/rating/1"),
+            rater: actor,
+            rated: obj,
+            scale: likertScale,
+            selections: ["1"],
+            ratingComment: comment,
+            dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
         });
 
         // The edApp
@@ -108,7 +124,7 @@ testUtils.readFile(path, function(err, fixture) {
             id: BASE_SECTION_IRI.concat("/rosters/1"),
             member: actor.id,
             organization: group.id,
-            roles: [Role.instructor.term],
+            roles: [Role.learner.term],
             status: Status.active.term,
             dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
         });
@@ -120,7 +136,7 @@ testUtils.readFile(path, function(err, fixture) {
         });
 
         // Assert that key attributes are the same
-        var event = eventFactory().create(ResourceManagementEvent, {
+        var event = eventFactory().create(FeedbackEvent, {
             id: uuid,
             actor: actor,
             action: action,

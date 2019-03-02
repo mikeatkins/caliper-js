@@ -44,6 +44,11 @@ var eventType = {
     term: "Event",
     iri: "http://purl.imsglobal.org/caliper/Event"
   },
+  feedback: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "FeedbackEvent",
+    iri: "http://purl.imsglobal.org/caliper/FeedbackEvent"
+  },
   forum: {
     context: config.jsonldContext.v1p1,
     term: "ForumEvent",

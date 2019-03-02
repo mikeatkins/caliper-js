@@ -21,7 +21,64 @@ var moment = require('moment');
 var uuid = require('node-uuid');
 var urijs = require('uri-js');
 var validator = require('validator');
+var contexts = require('../config/contexts');
 var config = require('../config/config');
+
+const regex = RegExp('http:\\/\\/purl.imsglobal.org\\/ctx\\/caliper\\/?v?[0-9]*p?[0-9]*');
+
+/**
+ * Check if any Delegate @context values possess a higher precedence than the opts @context value(s). If yes, replace.
+ * @param delegate
+ * @param opts
+ * @returns {*}
+ */
+function checkContextPrecedence(delegate, opts) {
+  var delegatePrecedence = getContextPrecedence(delegate['@context']);
+
+  Object.keys(opts).forEach(function(key) {
+    if (key === '@context') {
+      switch (checkObjectType(opts[key])) {
+        case '[object String]':
+          if (hoistContext(opts[key], delegatePrecedence)) {
+            delegate['@context'] = opts[key]
+          }
+          delete opts[key]; // entity context now redundant
+          break;
+        case '[object Array]':
+          for (var i = 0, len = opts[key].length; i < len; i++) {
+            if (checkObjectType(opts[key][i]) === '[object String]') {
+              if (hoistContext(opts[key][i], delegatePrecedence)) {
+                delegate['@context'] = opts[key][i]
+              }
+              // delete opts[key] // do not delete
+            }
+          }
+          break;
+        case '[object Object]':
+          if (opts[key].hasOwnProperty('@vocab')) {
+            if (hoistContext(opts[key]['@vocab'], delegatePrecedence)) {
+              delegate['@context'] = opts[key]['@vocab']
+            }
+            // delete opts[key] // do not delete
+          }
+
+          if (opts[key].hasOwnProperty('@base')) {
+            if (hoistContext(opts[key]['@base'], delegatePrecedence)) {
+              delegate['@context'] = opts[key]['@base']
+            }
+            // delete opts[key] // do not delete
+          }
+          break;
+      }
+    } else {
+      if (typeof opts[key] == 'object' && opts[key] !== null) {
+        checkContextPrecedence(delegate, opts[key]); // recursive
+      }
+
+    }
+  });
+  return delegate;
+}
 
 /**
  * Check Javascript object type.
@@ -30,7 +87,7 @@ var config = require('../config/config');
  */
 function checkObjectType(opts) {
   return Object.prototype.toString.call(opts);
-};
+}
 
 /**
  * Generate a RFC 4122 v1 timestamp-based UUID or a v4 "practically random" UUID.  Default is v4.
@@ -42,14 +99,28 @@ function generateUUID(version) {
   switch(version) {
     case 4:
       return uuid.v4();
-      break;
     case 1:
       return uuid.v1();
-      break;
     default:
       return uuid.v4();
   }
-};
+}
+
+/**
+ * Return Caliper JSON-LD context precedence
+ * @param obj
+ * @returns {number}
+ */
+function getContextPrecedence(contextIRI) {
+  var precedence = 0;
+  for (var i = 0; i < contexts.length; i++) {
+    if (contexts[i].iri == contextIRI) {
+      precedence = contexts[i].precedence;
+      break;
+    }
+  }
+  return precedence;
+}
 
 /**
  * Check action
@@ -59,7 +130,7 @@ function generateUUID(version) {
 function hasAction(opts) {
   // TODO lookup action based on event
   return !(_.isNil(opts.action) && _.isEmpty(opts.action));
-};
+}
 
 /**
  * Check actor
@@ -67,58 +138,18 @@ function hasAction(opts) {
  */
 function hasActor(opts) {
   return !_.isNil(opts.actor);
-};
+}
 
 /**
- * Check if object has JSON-LD @context property value
- * @param opts
+ * Check if object JSON-LD context IRI precedence trumps delegate context precedence.
+ * @param contextIRI
+ * @param delegatePrecedence
  * @returns {boolean}
  */
-function hasCaliperContext(opts) {
-  const regex = RegExp('http:\\/\\/purl.imsglobal.org\\/ctx\\/caliper\\/?v?[0-9]*p?[0-9]*');
-  var hasCaliperContext = false;
-
-  if (opts.hasOwnProperty('@context')) {
-    switch(checkObjectType(opts['@context'])) {
-      case '[object String]':
-        hasCaliperContext = regex.test(opts['@context']);
-        break;
-      case '[object Array]':
-        for (var i = 0, len = opts['@context'].length; i < len; i++) {
-          if (checkObjectType(opts['@context'][i]) === '[object String]') {
-            if (regex.test(opts['@context'][i])) {
-              hasCaliperContext = true;
-              break;
-            }
-          }
-        }
-        break;
-      case '[object Object]':
-        if (opts['@context'].hasOwnProperty('@vocab')) {
-          hasCaliperContext = regex.test(opts['@context']['@vocab']);
-        }
-
-        if (hasCaliperContext) {
-          break;
-        }
-
-        if (opts['@context'].hasOwnProperty('@base')) {
-          hasCaliperContext = regex.test(opts['@context']['@base']);
-        }
-        break;
-    }
-  }
-
-  return hasCaliperContext;
-};
-
-/**
- * Check for JSON-LD context
- * @returns {boolean}
- */
-function hasContext() {
-  return !_.isNil(opts["@context"]);
-};
+function hasContextPrecedence(contextIRI, delegatePrecedence) {
+  var objPrecedence = getContextPrecedence(contextIRI);
+  return objPrecedence > delegatePrecedence ? true : false;
+}
 
 /**
  * Check if eventTime is null, undefined or invalid.
@@ -136,7 +167,7 @@ function hasEventTime(opts) {
     }
   }
   return hasDateTime;
-};
+}
 
 /**
  * Check if id is undefined, null or empty.  Given that nearly any string could constitute a URI
@@ -145,7 +176,7 @@ function hasEventTime(opts) {
  */
 function hasId(opts) {
   return !(_.isNil(opts.id) && _.isEmpty(opts.id));
-};
+}
 
 /**
  * Check object
@@ -154,7 +185,7 @@ function hasId(opts) {
  */
 function hasObject(opts) {
   return !_.isNil(opts.object);
-};
+}
 
 /**
  * Check if type is undefined, null or empty.
@@ -163,7 +194,7 @@ function hasObject(opts) {
  */
 function hasType(opts) {
   return !(_.isNil(opts.type) && _.isEmpty(opts.type));
-};
+}
 
 /**
  * Check if String can be parsed as a URI
@@ -173,7 +204,6 @@ function hasUri(opts) {
   if (!(_.isNil(opts.id))) {
     var uri = urijs.parse(opts.id);
 
-    // If an error key is appended to the object return false
     if (!(_.isNil(uri.error))) {
       return false;
     } else {
@@ -182,7 +212,7 @@ function hasUri(opts) {
   } else {
     return false;
   }
-};
+}
 
 /**
  * Check if string is a UUID URN.
@@ -195,7 +225,17 @@ function hasUuidUrn(opts) {
   } else {
     return false;
   }
-};
+}
+
+/**
+ * Replace Delegate context value if object context value precedence is greater.
+ * @param contextIRI
+ * @param delegatePrecedence
+ * @returns {boolean}
+ */
+function hoistContext(contextIRI, delegatePrecedence) {
+  return isCaliperContext(contextIRI) && hasContextPrecedence(contextIRI, delegatePrecedence);
+}
 
 /**
  * Check if string is a blank node.
@@ -203,38 +243,38 @@ function hasUuidUrn(opts) {
  */
 function isBlankNode(opts) {
   if (!(_.isNil(opts.id))) {
-    return _.startsWith("_:") ? true : false;
+    return _.startsWith("_:");
   } else {
     return false;
   }
-};
+}
 
 /**
- * Check if JSON-LD context values is a Caliper context.
- * @type {function(*): boolean}
+ * Check if JSON-LD @context string value is a Caliper context.
+ * @param val
+ * @returns {boolean}
  */
 function isCaliperContext(val) {
-  const regex = RegExp('http:\\/\\/purl.imsglobal.org\\/ctx\\/caliper\\/?v?[0-9]*p?[0-9]*');
   return regex.test(val);
-};
+}
 
 /**
  * Check if date string is ISO 8601 compliant.
  * @param str
  * @returns {*}
  */
-var isISO8601 = module.exports.isISO8601 = function isISO8601(str) {
+function isISO8601(str) {
   return validator.isISO8601(str);
-};
+}
 
 /**
  * Validate UUID value. validator.isUUID(str [, version]) - check if the string is a UUID (version 3, 4 or 5).
  * @param uuid
  * @returns {*}
  */
-var isUuid = function isUuid(uuid) {
+function isUuid(uuid) {
   return validator.isUUID(uuid);
-};
+}
 
 /**
  * Check for top-level user-defined custom Entity properties against linked proto own and inherited
@@ -279,7 +319,7 @@ function moveToExtensions(proto, opts) {
   }
 
   return opts;
-};
+}
 
 /**
  * Remove @context property if value corresponds to the IMS Caliper context IRI.
@@ -293,15 +333,14 @@ function removeContext(obj) {
     }
   }
   return obj;
-};
+}
 
 module.exports = {
+  checkContextPrecedence: checkContextPrecedence,
   checkObjectType: checkObjectType,
   generateUUID: generateUUID,
   hasAction: hasAction,
   hasActor: hasActor,
-  hasCaliperContext: hasCaliperContext,
-  hasContext: hasContext,
   hasEventTime: hasEventTime,
   hasId: hasId,
   hasObject: hasObject,

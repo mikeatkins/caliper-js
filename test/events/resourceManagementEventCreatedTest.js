@@ -123,8 +123,6 @@ testUtils.readFile(path, function(err, fixture) {
             session: session
         });
 
-        console.log("CONTEXT=" + event['@context']);
-
         // Compare
         var diff = testUtils.compare(fixture, clientUtils.parse(event));
         var diffMsg = "Validate JSON" + (!_.isUndefined(diff) ? " diff = " + clientUtils.stringify(diff) : "");

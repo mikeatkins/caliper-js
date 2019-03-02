@@ -19,7 +19,6 @@
 var _ = require('lodash');
 var entity = require('./entity');
 var entityValidator = require('../validators/entityValidator');
-var validator = require('../validators/validator');
 
 /**
  * Factory function that returns a mutated object based on a delegate prototype when the
@@ -35,7 +34,7 @@ var entityFactory = function entityFactory() {
 
       // Evaluate user supplied values
       if (!_.isEmpty(opts)) {
-        opts = entityValidator.checkOpts(delegate, opts)
+        opts = entityValidator.checkRequiredPropertyValues(delegate, opts)
       }
 
       return opts.id;
@@ -44,9 +43,12 @@ var entityFactory = function entityFactory() {
       delegate = delegate || entity;
       opts = opts || {};
 
+      // Check delegate JSON-LD context against opts contexts, if any.
+      delegate = entityValidator.checkContextPrecedence(delegate, opts);
+
       // Evaluate user supplied values
       if (!_.isEmpty(opts)) {
-        opts = entityValidator.checkOpts(delegate, opts)
+        opts = entityValidator.checkRequiredPropertyValues(delegate, opts)
       }
 
       return _.assign({}, delegate, opts);

@@ -74,6 +74,11 @@ var entityType = {
     term: "Chapter",
     iri: "http://purl.imsglobal.org/caliper/Chapter"
   },
+  comment: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "Comment",
+    iri: "http://purl.imsglobal.org/caliper/Comment"
+  },
   courseOffering: {
     context: config.jsonldContext.v1p1,
     term: "CourseOffering",
@@ -139,6 +144,11 @@ var entityType = {
     term: "LearningObjective",
     iri: "http://purl.imsglobal.org/caliper/LearningObjective"
   },
+  likertScale: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "LikertScale",
+    iri: "http://purl.imsglobal.org/caliper/LikertScale"
+  },
   link: {
     context: config.jsonldContext.v1p1_toolLaunch,
     term: "Link",
@@ -184,6 +194,16 @@ var entityType = {
     term: "MultipleResponseResponse",
     iri: "http://purl.imsglobal.org/caliper/MultipleResponseResponse"
   },
+  multiselectionScale: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "MultiselectionScale",
+    iri: "http://purl.imsglobal.org/caliper/MultiselectionScale"
+  },
+  numericScale: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "NumericScale",
+    iri: "http://purl.imsglobal.org/caliper/NumericScale"
+  },
   organization: {
     context: config.jsonldContext.v1p1,
     term: "Organization",
@@ -204,6 +224,11 @@ var entityType = {
     term: "Query",
     iri: "http://purl.imsglobal.org/caliper/Query"
   },
+  rating: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "Rating",
+    iri: "http://purl.imsglobal.org/caliper/Rating"
+  },
   response: {
     context: config.jsonldContext.v1p1,
     term: "Response",
@@ -213,6 +238,11 @@ var entityType = {
     context: config.jsonldContext.v1p1,
     term: "Result",
     iri: "http://purl.imsglobal.org/caliper/Result"
+  },
+  scale: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "Scale",
+    iri: "http://purl.imsglobal.org/caliper/Scale"
   },
   score: {
     context: config.jsonldContext.v1p1,

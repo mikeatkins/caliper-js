@@ -303,6 +303,14 @@ Caliper.Entities.TrueFalseResponse         = require('./entities/response/trueFa
 Caliper.Entities.Query                     = require('./entities/search/query');
 Caliper.Entities.SearchResponse            = require('./entities/search/searchResponse');
 
+// Survey
+Caliper.Entities.Comment                    = require('./entities/survey/comment');
+Caliper.Entities.LikertScale                = require('./entities/survey/likertScale');
+Caliper.Entities.MultiselectionScale        = require('./entities/survey/multiselectionScale');
+Caliper.Entities.NumericScale               = require('./entities/survey/numericScale');
+Caliper.Entities.Rating                     = require('./entities/survey/rating');
+Caliper.Entities.Scale                      = require('./entities/survey/scale');
+
 // Session
 Caliper.Entities.Session                   = require('./entities/session/session');
 Caliper.Entities.LtiSession                = require('./entities/session/ltiSession');
@@ -320,6 +328,7 @@ Caliper.Events.AnnotationEvent             = require('./events/annotationEvent')
 Caliper.Events.AssessmentEvent             = require('./events/assessmentEvent');
 Caliper.Events.AssessmentItemEvent         = require('./events/assessmentItemEvent');
 Caliper.Events.AssignableEvent             = require('./events/assignableEvent');
+Caliper.Events.FeedbackEvent               = require('./events/feedbackEvent');
 Caliper.Events.ForumEvent                  = require('./events/forumEvent');
 Caliper.Events.MediaEvent                  = require('./events/mediaEvent');
 Caliper.Events.MessageEvent                = require('./events/messageEvent');
