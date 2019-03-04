@@ -22,60 +22,54 @@ var test = require('tape');
 
 var config =  require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var Assessment = require('../../src/entities/resource/assessment');
-var Attempt = require('../../src/entities/outcome/attempt');
+var Comment = require('../../src/entities/survey/comment');
 var Person = require('../../src/entities/agent/person');
-var Score = require('../../src/entities/outcome/score');
-var SoftwareApplication = require('../../src/entities/agent/softwareApplication');
+var CourseSection = require('../../src/entities/agent/courseSection');
+var DigitalResource = require('../../src/entities/resource/digitalResource');
+var DigitalResourceCollection = require('../../src/entities/resource/digitalResourceCollection');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEntityScore.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEntityComment.json";
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
-
-  test('scoreTest', function (t) {
-
+  
+  test('commentTest', function (t) {
+    
     // Plan for N assertions
     t.plan(1);
-
+    
     var BASE_IRI = "https://example.edu";
-    var BASE_SECTION_IRI = "https://example.edu/terms/201601/courses/7/sections/1";
-    var BASE_ATTEMPT_IRI = "https://example.edu/terms/201601/courses/7/sections/1/assess/1/users/554433/attempts/1";
-
-    var assignee = entityFactory().create(Person, {id: BASE_IRI.concat("/users/554433")});
-    var assignable = entityFactory().create(Assessment, {id: BASE_SECTION_IRI.concat("/assess/1")});
-    var attempt = entityFactory().create(Attempt, {
-      id: BASE_ATTEMPT_IRI,
-      assignee: assignee.id,
-      assignable: assignable.id,
-      count: 1,
-      dateCreated: "2016-11-15T10:05:00.000Z",
-      startedAtTime: "2016-11-15T10:05:00.000Z",
-      endedAtTime: "2016-11-15T10:55:30.000Z",
-      duration: "PT50M30S"
+    var BASE_SECTION_IRI = "https://example.edu/terms/201801/courses/7/sections/1";
+    
+    var person = entityFactory().create(Person, {id: BASE_IRI.concat("/users/554433")});
+    var section = entityFactory().create(CourseSection, {id: BASE_SECTION_IRI});
+    var collection = entityFactory().create(DigitalResourceCollection, {
+      id: BASE_SECTION_IRI.concat("/resources/1"),
+      name: "Course Assets",
+      isPartOf: section
     });
-
-    var scorer = entityFactory().create(SoftwareApplication, {
-      id: BASE_IRI.concat("/autograder"),
-      dateCreated: moment.utc("2016-11-15T10:55:58.000Z")
+    var resource = entityFactory().create(DigitalResource, {
+      id: BASE_SECTION_IRI.concat("/resources/1/syllabus.pdf"),
+      name: "Course Syllabus",
+      mediaType: "application/pdf",
+      isPartOf: collection,
+      dateCreated: moment.utc("2018-08-02T11:32:00.000Z")
     });
-
-    var entity = entityFactory().create(Score, {
-      id: BASE_SECTION_IRI.concat("/assess/1/users/554433/attempts/1/scores/1"),
-      attempt: attempt,
-      maxScore: 15.0,
-      scoreGiven: 10.0,
-      scoredBy: scorer,
-      comment: "auto-graded exam",
-      dateCreated: moment.utc("2016-11-15T10:56:00.000Z")
+    
+    var entity = entityFactory().create(Comment, {
+      id: BASE_SECTION_IRI.concat("/assess/1/items/6/users/665544/responses/1/comment/1"),
+      commenter: person,
+      commentedOn: resource,
+      value: "I like what you did here but you need to improve on...",
+      dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
     });
-
+    
     // Compare
     var diff = testUtils.compare(fixture, clientUtils.parse(entity));
     var diffMsg = "Validate JSON" + (!_.isUndefined(diff) ? " diff = " + clientUtils.stringify(diff) : "");
-
+    
     t.equal(true, _.isUndefined(diff), diffMsg);
     //t.end();
   });

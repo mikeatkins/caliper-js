@@ -18,12 +18,12 @@
 
 var _ = require('lodash');
 var scale = require('./scale');
-var entityType = require('../entityType').multiselectScale;
+var entityType = require('../entityType').multiselectionScale;
 
 /**
- * Link MultiselectScale to delegate Entity and assign default property values.
+ * Link MultiselectionScale to delegate Entity and assign default property values.
  */
-var MultiselectScale = _.assign({}, scale, {
+var MultiselectionScale = _.assign({}, scale, {
     '@context': entityType.context,
     type: entityType.term,
     points: null,
@@ -34,4 +34,4 @@ var MultiselectScale = _.assign({}, scale, {
     maxSelections: null
 });
 
-module.exports = MultiselectScale;
+module.exports = MultiselectionScale;
