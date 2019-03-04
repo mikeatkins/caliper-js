@@ -33,7 +33,7 @@ var path = config.testFixturesBaseDir.v1p1 + "caliperEntityAggregateMeasureColle
 testUtils.readFile(path, function(err, fixture) {
     if (err) throw err;
 
-    test('attemptTest', function (t) {
+    test('aggregateMeasureCollectionTest', function (t) {
 
         // Plan for N assertions
         t.plan(1);

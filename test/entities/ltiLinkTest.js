@@ -31,7 +31,7 @@ var path = config.testFixturesBaseDir.v1p1 + "caliperEntityLtiLink.json";
 testUtils.readFile(path, function(err, fixture) {
     if (err) throw err;
 
-    test('linkTest', function (t) {
+    test('ltiLinkTest', function (t) {
 
         // Plan for N assertions
         t.plan(1);

@@ -31,6 +31,7 @@ const Config = {
   jsonldContext: {
     v1p0: "http://purl.imsglobal.org/ctx/caliper/v1/Context",
     v1p1: "http://purl.imsglobal.org/ctx/caliper/v1p1",
+    v1p1_feedback: "http://purl.imsglobal.org/ctx/caliper/v1p1/FeedbackProfile-extension",
     v1p1_resourceManagement: "http://purl.imsglobal.org/ctx/caliper/v1p1/ResourceManagementProfile-extension",
     v1p1_search: "http://purl.imsglobal.org/ctx/caliper/v1p1/SearchProfile-extension",
     v1p1_toolLaunch: "http://purl.imsglobal.org/ctx/caliper/v1p1/ToolLaunchProfile-extension",

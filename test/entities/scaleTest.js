@@ -22,36 +22,31 @@ var test = require('tape');
 
 var config =  require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var AggregateMeasure = require('../../src/entities/use/aggregateMeasure');
-var metric = require('../../src/entities/use/metric');
+var Scale = require('../../src/entities/survey/scale');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEntityAggregateMeasure.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEntityScale.json";
 
 testUtils.readFile(path, function(err, fixture) {
-    if (err) throw err;
-
-    test('aggregateMeasureTest', function (t) {
-
-        // Plan for N assertions
-        t.plan(1);
-
-        var entity = entityFactory().create(AggregateMeasure, {
-            id: "urn:uuid:c3ba4c01-1f17-46e0-85dd-1e366e6ebb81",
-            name: "Units Completed",
-            metric: metric.unitsCompleted.term,
-            metricValue: 12.0,
-            metricValueMax: 25.0,
-            startedAtTime: moment.utc("2019-08-15T10:15:00.000Z"),
-            endedAtTime: moment.utc("2019-11-15T10:15:00.000Z")
-        });
-
-        // Compare
-        var diff = testUtils.compare(fixture, clientUtils.parse(entity));
-        var diffMsg = "Validate JSON" + (!_.isUndefined(diff) ? " diff = " + clientUtils.stringify(diff) : "");
-
-        t.equal(true, _.isUndefined(diff), diffMsg);
-        //t.end();
+  if (err) throw err;
+  
+  test('scaleTest', function (t) {
+    
+    // Plan for N assertions
+    t.plan(1);
+    
+    var entity = entityFactory().create(Scale, {
+      id: "https://example.edu/scale/1",
+      question: "How would you rate this?",
+      dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
     });
+    
+    // Compare
+    var diff = testUtils.compare(fixture, clientUtils.parse(entity));
+    var diffMsg = "Validate JSON" + (!_.isUndefined(diff) ? " diff = " + clientUtils.stringify(diff) : "");
+    
+    t.equal(true, _.isUndefined(diff), diffMsg);
+    //t.end();
+  });
 });

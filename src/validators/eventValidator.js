@@ -16,66 +16,18 @@
  * with this program. If not, see http://www.gnu.org/licenses/.
  */
 
-var config = require('../config/config');
-var contexts = require('../config/contexts');
 var validator = require('./validator');
 
-
-function hoistContext(delegate, opts) {
-  const regex = RegExp('http:\\/\\/purl.imsglobal.org\\/ctx\\/caliper\\/?v?[0-9]*p?[0-9]*');
-
-  //1. Check type
-  //2. If extension
-  //3. Check payload for entities that default to extension
-  //4. Check entity type
-  //4. If found update event context
-
-  var delegatePrecedence = checkContextPrecedence(delegate["@context"]);
-  // console.log("Delegate Precedence =", delegatePrecedence);
-
-  for (var key in opts) {
-    if (opts.hasOwnProperty(key)) {
-      if (typeof opts[key] == "object" && opts[key] !== null) {
-        hoistContext(delegate, opts[key]); // recursive
-      }
-      else {
-        if (key == "@context") {
-          if (regex.test(opts[key]) && opts[key] != delegate["@context"]) {
-            var optsPrecedence = checkContextPrecedence(opts[key]);
-            // console.log("Opts Precedence =", optsPrecedence);
-
-            if (optsPrecedence > delegatePrecedence) {
-              // console.log("Opts Precedence is greater");
-              delegate["@context"] = opts[key] // hoist
-            }
-          }
-        }
-      }
-    } else {
-      continue;
-    }
-  }
-
-  return delegate;
-}
-
 /**
- * Return Caliper JSON-LD context precedence
- * @param obj
- * @returns {number}
+ * Check if Delegate @context value retains a higher precedence than the opts @context value(s). If not, replace.
+ * This situation can occur with Events that have been extended with new profile "extension" terms
+ * (ex. Tool Use Profile).
+ * @param delegate
+ * @param opts
+ * @returns {*}
  */
-function checkContextPrecedence(val) {
-
-  // TODO val could be string, obj, or array
-
-  var precedence = 0;
-  for (var i = 0; i < contexts.length; i++) {
-    if (contexts[i].iri == val) {
-      precedence = contexts[i].precedence;
-      break;
-    }
-  }
-  return precedence;
+function checkContextPrecedence(delegate, opts) {
+  return validator.checkContextPrecedence(delegate, opts);
 }
 
 /**
@@ -84,26 +36,21 @@ function checkContextPrecedence(val) {
  * @param opts
  * @returns {*}
  */
-function checkOpts(delegate, opts) {
+function checkRequiredPropertyValues(delegate, opts) {
   Object.keys(delegate).forEach(function(key) {
     switch (key) {
-      case "@context":
-        if (validator.hasCaliperContext(delegate)) {
-          delete opts['@context']; // suppress
-        }
-        break;
       case "type":
         if (validator.hasType(delegate)) {
-          delete opts.type; // suppress
+          delete opts[key]; // suppress
         } else {
-          if (!validator.hasType(opts.type)) {
+          if (!validator.hasType(opts[key])) {
             throw new Error("Required type not provided");
           }
         }
         break;
       case "id":
         if (!validator.hasUuidUrn(opts)) {
-          opts.id = "urn:uuid:" + validator.generateUUID(config.uuidVersion);
+          opts[key] = "urn:uuid:" + validator.generateUUID(config.uuidVersion);
         }
         break;
       case "actor":
@@ -129,9 +76,9 @@ function checkOpts(delegate, opts) {
     }
   });
   return opts;
-};
+}
 
 module.exports = {
-  hoistContext: hoistContext,
-  checkOpts: checkOpts
+  checkContextPrecedence: checkContextPrecedence,
+  checkRequiredPropertyValues: checkRequiredPropertyValues
 };

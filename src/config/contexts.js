@@ -28,6 +28,11 @@ var contexts =  [
         precedence: 11
     },
     {
+        version: "v1p1/FeedbackProfile-extension",
+        iri: "http://purl.imsglobal.org/ctx/caliper/v1p1/FeedbackProfile-extension",
+        precedence: 11.5
+    },
+    {
         version: "v1p1/ResourceManagementProfile-extension",
         iri: "http://purl.imsglobal.org/ctx/caliper/v1p1/ResourceManagementProfile-extension",
         precedence: 11.5
@@ -63,6 +68,10 @@ var context =  {
     v1p1: {
         iri: "http://purl.imsglobal.org/ctx/caliper/v1p1",
         precedence: 11
+    },
+    v1p1_feedback: {
+        iri: "http://purl.imsglobal.org/ctx/caliper/v1p1/FeedbackProfile-extension",
+        precedence: 11.5
     },
     v1p1_resourceManagement: {
         iri: "http://purl.imsglobal.org/ctx/caliper/v1p1/ResourceManagementProfile-extension",

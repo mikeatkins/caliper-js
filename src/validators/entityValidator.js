@@ -19,22 +19,29 @@
 var validator = require('./validator');
 
 /**
+ * Check if Delegate @context value retains a higher precedence than the opts @context value(s). If not, replace.
+ * This situation can occur with Events that have been extended with new profile "extension" terms
+ * (ex. Tool Use Profile).
+ * @param delegate
+ * @param opts
+ * @returns {*}
+ */
+function checkContextPrecedence(delegate, opts) {
+  return validator.checkContextPrecedence(delegate, opts);
+}
+
+/**
  * Check required Entity properties against set of user-supplied values
  * @param delegate
  * @param opts
  * @returns {*}
  */
-function checkOpts(delegate, opts) {
+function checkRequiredPropertyValues(delegate, opts) {
   Object.keys(opts).forEach(function(key) {
     switch (key) {
-      case "@context":
-        if (validator.hasCaliperContext(delegate)) {
-          delete opts['@context']; // suppress
-          break;
-        }
       case "type":
         if (validator.hasType(delegate)) {
-          delete opts.type; // suppress
+          delete opts[key]; // suppress
         }
         break;
       case "id":
@@ -45,6 +52,9 @@ function checkOpts(delegate, opts) {
     }
   });
   return opts;
-};
+}
 
-module.exports.checkOpts = checkOpts;
+module.exports = {
+  checkContextPrecedence: checkContextPrecedence,
+  checkRequiredPropertyValues: checkRequiredPropertyValues
+};

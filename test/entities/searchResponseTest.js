@@ -36,7 +36,7 @@ var path = config.testFixturesBaseDir.v1p1 + "caliperEntitySearchResponse.json";
 testUtils.readFile(path, function(err, fixture) {
     if (err) throw err;
 
-    test('searchResponseResponseTest', function (t) {
+    test('searchResponseTest', function (t) {
 
         // Plan for N assertions
         t.plan(1);

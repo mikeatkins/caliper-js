@@ -18,32 +18,14 @@
 
 var _ = require('lodash');
 var event = require('./event');
-var validator = require('../validators/eventValidator');
+var eventType = require('./eventType').feedback;
 
 /**
- * Factory function that returns a mutated object based on a delegate prototype when the
- * factory create method is invoked. All enumerable string keyed properties included in
- * the other sources are also assigned to the created object in the order provided.
- * @returns {{create: create}}
+ * Compose FeedbackEvent from Event and set default properties.
  */
-var eventFactory = function eventFactory() {
-  return {
-    create: function create(delegate, opts) {
-      delegate = delegate || event;
-      opts = opts || {};
+var FeedbackEvent = _.assign({}, event, {
+    '@context': eventType.context,
+    type: eventType.term
+});
 
-      // Check delegate JSON-LD context against opts contexts, if any.
-      delegate = validator.checkContextPrecedence(delegate, opts);
-
-      // Validate user-supplied values
-      if (!_.isEmpty(opts)) {
-        opts = validator.checkRequiredPropertyValues(delegate, opts);
-      }
-
-      // Compose object
-      return _.assign({}, delegate, opts);
-    }
-  }
-};
-
-module.exports = eventFactory;
+module.exports = FeedbackEvent;
