@@ -25,7 +25,7 @@ var LikertScale = require('../../src/entities/survey/likertScale');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEntityScaleLikertScale.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEntityLikertScale.json";
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;

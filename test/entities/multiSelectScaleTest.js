@@ -22,11 +22,11 @@ var test = require('tape');
 
 var config =  require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var MultiselectScale = require('../../src/entities/survey/multiselectionScale');
+var MultiselectScale = require('../../src/entities/survey/multiselectScale');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEntityScaleMultiselectionScale.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEntityMultiselectScale.json";
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
