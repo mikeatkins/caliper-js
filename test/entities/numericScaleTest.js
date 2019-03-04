@@ -26,7 +26,7 @@ var NumericScale = require('../../src/entities/survey/numericScale');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEntityScaleNumericScale.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEntityNumericScale.json";
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;

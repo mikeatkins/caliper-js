@@ -194,10 +194,10 @@ var entityType = {
     term: "MultipleResponseResponse",
     iri: "http://purl.imsglobal.org/caliper/MultipleResponseResponse"
   },
-  multiselectionScale: {
+  multiselectScale: {
     context: config.jsonldContext.v1p1_feedback,
-    term: "MultiselectionScale",
-    iri: "http://purl.imsglobal.org/caliper/MultiselectionScale"
+    term: "MultiselectScale",
+    iri: "http://purl.imsglobal.org/caliper/MultiselectScale"
   },
   numericScale: {
     context: config.jsonldContext.v1p1_feedback,

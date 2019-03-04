@@ -306,7 +306,7 @@ Caliper.Entities.SearchResponse            = require('./entities/search/searchRe
 // Survey
 Caliper.Entities.Comment                    = require('./entities/survey/comment');
 Caliper.Entities.LikertScale                = require('./entities/survey/likertScale');
-Caliper.Entities.MultiselectScale           = require('./entities/survey/multiselectionScale');
+Caliper.Entities.MultiselectScale           = require('./entities/survey/multiselectScale');
 Caliper.Entities.NumericScale               = require('./entities/survey/numericScale');
 Caliper.Entities.Rating                     = require('./entities/survey/rating');
 Caliper.Entities.Scale                      = require('./entities/survey/scale');
