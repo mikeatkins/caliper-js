@@ -17,35 +17,49 @@
  */
 
 var _ = require('lodash');
-var moment = require('moment');
 var test = require('tape');
 
 var config =  require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var LtiLink = require('../../src/entities/resource/ltiLink');
+var LikertScale = require('../../src/entities/survey/likertScale');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEntityLtiLink.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEntityLikertScale.json";
 
 testUtils.readFile(path, function(err, fixture) {
-    if (err) throw err;
-
-    test('ltiLinkTest', function (t) {
-
-        // Plan for N assertions
-        t.plan(1);
-
-        var entity = entityFactory().create(LtiLink, {
-            id: "https://tool.com/link/123",
-            messageType: "LtiResourceLinkRequest"
-        });
-
-        // Compare
-        var diff = testUtils.compare(fixture, clientUtils.parse(entity));
-        var diffMsg = "Validate JSON" + (!_.isUndefined(diff) ? " diff = " + clientUtils.stringify(diff) : "");
-
-        t.equal(true, _.isUndefined(diff), diffMsg);
-        //t.end();
+  if (err) throw err;
+  
+  test('likertScaleTest', function (t) {
+    
+    // Plan for N assertions
+    t.plan(1);
+    
+    var labels = [];
+    labels.push("Strongly Disagree");
+    labels.push("Disagree");
+    labels.push("Agree");
+    labels.push("Strongly Agree");
+    
+    var values = [];
+    values.push(-2);
+    values.push(-1);
+    values.push(1);
+    values.push(2);
+    
+    var entity = entityFactory().create(LikertScale, {
+      id: "https://example.edu/scale/2",
+      points: 4,
+      question: "Do you agree with the opinion presented?",
+      itemLabels: labels,
+      itemValues: values
     });
+    
+    // Compare
+    var diff = testUtils.compare(fixture, clientUtils.parse(entity));
+    var diffMsg = "Validate JSON" + (!_.isUndefined(diff) ? " diff = " + clientUtils.stringify(diff) : "");
+    
+    t.equal(true, _.isUndefined(diff), diffMsg);
+    //t.end();
+  });
 });

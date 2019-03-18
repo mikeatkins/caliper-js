@@ -22,30 +22,36 @@ var test = require('tape');
 
 var config =  require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var LtiLink = require('../../src/entities/resource/ltiLink');
+var NumericScale = require('../../src/entities/survey/numericScale');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEntityLtiLink.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEntityNumericScale.json";
 
 testUtils.readFile(path, function(err, fixture) {
-    if (err) throw err;
-
-    test('ltiLinkTest', function (t) {
-
-        // Plan for N assertions
-        t.plan(1);
-
-        var entity = entityFactory().create(LtiLink, {
-            id: "https://tool.com/link/123",
-            messageType: "LtiResourceLinkRequest"
-        });
-
-        // Compare
-        var diff = testUtils.compare(fixture, clientUtils.parse(entity));
-        var diffMsg = "Validate JSON" + (!_.isUndefined(diff) ? " diff = " + clientUtils.stringify(diff) : "");
-
-        t.equal(true, _.isUndefined(diff), diffMsg);
-        //t.end();
+  if (err) throw err;
+  
+  test('numericScaleTest', function (t) {
+    
+    // Plan for N assertions
+    t.plan(1);
+    
+    var entity = entityFactory().create(NumericScale, {
+      id: "https://example.edu/scale/4",
+      question: "How do you feel about this content?",
+      minValue: 0.0,
+      minLabel: "Disliked",
+      maxValue: 10.0,
+      maxLabel: "Liked",
+      step: 0.5,
+      dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
     });
+    
+    // Compare
+    var diff = testUtils.compare(fixture, clientUtils.parse(entity));
+    var diffMsg = "Validate JSON" + (!_.isUndefined(diff) ? " diff = " + clientUtils.stringify(diff) : "");
+    
+    t.equal(true, _.isUndefined(diff), diffMsg);
+    //t.end();
+  });
 });
