@@ -349,7 +349,7 @@ Caliper.Envelopes.Envelope                 = require('./envelope');
 Caliper.Selectors.TextPositionSelector     = require('./selectors/textPositionSelector');
 
 // Validators
-Caliper.Validators.Validator               = require('./validators/validator');
+Caliper.Validators.BaseValidator           = require('./validators/baseValidator');
 Caliper.Validators.EntityValidator         = require('./validators/entityValidator');
 Caliper.Validators.EventValidator          = require('./validators/eventValidator');
 Caliper.Validators.ObjectProperties        = require('./validators/objectProperties');

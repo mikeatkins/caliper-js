@@ -16,7 +16,8 @@
  * with this program. If not, see http://www.gnu.org/licenses/.
  */
 
-var validator = require('./validator');
+var config = require('../config/config');
+var validator = require('./baseValidator');
 
 /**
  * Check if Delegate @context value retains a higher precedence than the opts @context value(s). If not, replace.
@@ -50,6 +51,7 @@ function checkRequiredPropertyValues(delegate, opts) {
         break;
       case "id":
         if (!validator.hasUuidUrn(opts)) {
+          //opts[key] = "JACTUUID";
           opts[key] = "urn:uuid:" + validator.generateUUID(config.uuidVersion);
         }
         break;

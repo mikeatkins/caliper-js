@@ -18,7 +18,7 @@
 
 // var logger = require('../logger');
 var objectProperties = require('../validators/objectProperties');
-var validator = require('../validators/validator');
+var validator = require('../validators/baseValidator');
 
 /**
  * Represents clientUtils self.

@@ -16,7 +16,7 @@
  * with this program. If not, see http://www.gnu.org/licenses/.
  */
 
-var validator = require('./validator');
+var validator = require('./baseValidator');
 
 /**
  * Check if Delegate @context value retains a higher precedence than the opts @context value(s). If not, replace.
