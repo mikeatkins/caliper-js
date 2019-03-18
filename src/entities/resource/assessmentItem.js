@@ -25,6 +25,7 @@ var entityType = require('../entityType').assessmentItem;
  */
 var AssessmentItem = _.assign({}, assignable, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   isTimeDependent: null
 });

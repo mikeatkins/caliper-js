@@ -25,6 +25,7 @@ var entityType = require('../entityType').trueFalseResponse;
  */
 var TrueFalseResponse = _.assign({}, response, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   value: null
 });

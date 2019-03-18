@@ -25,6 +25,7 @@ var entityType = require('../entityType').selectTextResponse;
  */
 var SelectTextResponse = _.assign({}, response, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   values: []
 });

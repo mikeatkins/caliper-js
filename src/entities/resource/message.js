@@ -25,6 +25,7 @@ var entityType = require('../entityType').message;
  */
 var Message = _.assign({}, digitalResource, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   body: null,
   replyTo: null,

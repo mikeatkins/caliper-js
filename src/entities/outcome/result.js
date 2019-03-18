@@ -25,6 +25,7 @@ var entityType = require('../entityType').result;
  */
 var Result = _.assign({}, entity, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   attempt: {},
   maxResultScore: null,

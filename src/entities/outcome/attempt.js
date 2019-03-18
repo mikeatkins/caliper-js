@@ -25,6 +25,7 @@ var entityType = require('../entityType').attempt;
  */
 var Attempt = _.assign({}, entity, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   assignee: {},
   assignable: {},

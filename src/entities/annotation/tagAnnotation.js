@@ -25,6 +25,7 @@ var entityType = require('../entityType').tagAnnotation;
  */
 var TagAnnotation = _.assign({}, annotation, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   tags: []
 });

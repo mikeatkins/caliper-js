@@ -25,6 +25,7 @@ var entityType = require('../entityType').videoObject;
  */
 var VideoObject = _.assign({}, mediaObject, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term});
 
 module.exports = VideoObject;

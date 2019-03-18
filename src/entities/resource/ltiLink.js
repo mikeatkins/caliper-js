@@ -25,6 +25,7 @@ var entityType = require('../entityType').ltiLink;
  */
 var LtiLink = _.assign({}, digitalResource, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
     messageType: null
 });

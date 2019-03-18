@@ -25,10 +25,11 @@ var entityType = require('../entityType').aggregateMeasure;
  */
 var AggregateMeasure = _.assign({}, entity, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
     metric: null,
     metricValue: null,
-    metricValueMax: null,
+    maxMetricValue: null,
     startedAtTime: null,
     endedAtTime: null
 });

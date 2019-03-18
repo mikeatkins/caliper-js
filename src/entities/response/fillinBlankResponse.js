@@ -25,6 +25,7 @@ var entityType = require('../entityType').fillinBlankResponse;
  */
 var FillinBlankResponse = _.assign({}, response, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   values: []});
 

@@ -25,6 +25,7 @@ var entityType = require('../entityType').comment;
  */
 var Comment = _.assign({}, entity, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
     commenter: null,
     commentedOn: null,

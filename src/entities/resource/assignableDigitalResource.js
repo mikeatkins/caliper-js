@@ -25,6 +25,7 @@ var entityType = require('../entityType').assignableDigitalResource;
  */
 var AssignableDigitalResource = _.assign({}, digitalResource, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   dateToActivate: null,
   dateToShow: null,

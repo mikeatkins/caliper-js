@@ -25,6 +25,7 @@ var entityType = require('../entityType').page;
  */
 var Page = _.assign({}, digitalResource, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term
 });
 

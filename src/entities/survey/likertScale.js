@@ -25,8 +25,9 @@ var entityType = require('../entityType').likertScale;
  */
 var LikertScale = _.assign({}, scale, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
-    points: null,
+    scalePoints: null,
     itemLabels: [],
     itemValues: [],
 });

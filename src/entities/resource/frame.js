@@ -25,6 +25,7 @@ var entityType = require('../entityType').frame;
  */
 var Frame = _.assign({}, digitalResource, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   index: null
 });

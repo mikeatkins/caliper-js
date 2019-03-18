@@ -22,35 +22,43 @@ var metric =  {
     assessmentsPassed: {
         context: config.jsonldContext.v1p1_toolUse,
         term: "AssessmentsPassed",
-        iri: "http://purl.imsglobal.org/caliper/AssessmentsPassed"},
+        iri: "http://purl.imsglobal.org/caliper/AssessmentsPassed"
+    },
     assessmentsSubmitted: {
         context: config.jsonldContext.v1p1_toolUse,
         term: "AssessmentsSubmitted",
-        iri: "http://purl.imsglobal.org/caliper/AssessmentsSubmitted"},
+        iri: "http://purl.imsglobal.org/caliper/AssessmentsSubmitted"
+    },
     minutesOnTask: {
         context: config.jsonldContext.v1p1_toolUse,
         term: "MinutesOnTask",
-        iri: "http://purl.imsglobal.org/caliper/MinutesOnTask"},
+        iri: "http://purl.imsglobal.org/caliper/MinutesOnTask"
+    },
     skillsMastered: {
         context: config.jsonldContext.v1p1_toolUse,
         term: "SkillsMastered",
-        iri: "http://purl.imsglobal.org/caliper/SkillsMastered"},
+        iri: "http://purl.imsglobal.org/caliper/SkillsMastered"
+    },
     standardsMastered: {
         context: config.jsonldContext.v1p1_toolUse,
         term: "StandardsMastered",
-        iri: "http://purl.imsglobal.org/caliper/StandardsMastered"},
+        iri: "http://purl.imsglobal.org/caliper/StandardsMastered"
+    },
     unitsCompleted: {
         context: config.jsonldContext.v1p1_toolUse,
         term: "UnitsCompleted",
-        iri: "http://purl.imsglobal.org/caliper/UnitsCompleted"},
+        iri: "http://purl.imsglobal.org/caliper/UnitsCompleted"
+    },
     unitsPassed: {
         context: config.jsonldContext.v1p1_toolUse,
         term: "UnitsPassed",
-        iri: "http://purl.imsglobal.org/caliper/UnitsPassed"},
+        iri: "http://purl.imsglobal.org/caliper/UnitsPassed"
+    },
     wordsRead: {
         context: config.jsonldContext.v1p1_toolUse,
         term: "WordsRead",
-        iri: "http://purl.imsglobal.org/caliper/WordsRead"}
+        iri: "http://purl.imsglobal.org/caliper/WordsRead"
+    }
 };
 
 module.exports = metric;

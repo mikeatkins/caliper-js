@@ -91,7 +91,7 @@ testUtils.readFile(path, function(err, fixture) {
 
         var likertScale = entityFactory().create(LikertScale, {
             id: BASE_IRI.concat("/scale/2"),
-            points: 4,
+            scalePoints: 4,
             question: "Do you agree with the opinion presented?",
             itemLabels: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"],
             itemValues: [-2, -1, 1, 2],

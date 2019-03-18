@@ -25,6 +25,7 @@ var entityType = require('../entityType').learningObjective;
  */
 var LearningObjective = _.assign({}, entity, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term
 });
 

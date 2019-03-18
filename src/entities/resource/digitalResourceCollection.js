@@ -25,6 +25,7 @@ var entityType = require('../entityType').digitalResourceCollection;
  */
 var DigitalResourceCollection = _.assign({}, digitalResource, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   items: []
 });

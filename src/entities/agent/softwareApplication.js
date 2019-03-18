@@ -25,6 +25,7 @@ var entityType = require('../entityType').softwareApplication;
  */
 var SoftwareApplication = _.assign({}, agent, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   version: null
 });

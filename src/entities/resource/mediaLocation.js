@@ -25,6 +25,7 @@ var entityType = require('../entityType').mediaLocation;
  */
 var MediaLocation = _.assign({}, digitalResource, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   currentTime: null
 });

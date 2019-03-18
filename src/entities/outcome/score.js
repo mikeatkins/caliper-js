@@ -25,6 +25,7 @@ var entityType = require('../entityType').score;
  */
 var Score = _.assign({}, entity, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   attempt: {},
   maxScore: null,
