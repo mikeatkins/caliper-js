@@ -25,6 +25,7 @@ var entityType = require('../entityType').rating;
  */
 var Rating = _.assign({}, entity, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
     rater: null,
     rated: null,

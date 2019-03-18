@@ -25,6 +25,7 @@ var entityType = require('../entityType').aggregateMeasureCollection;
  */
 var AggregateMeasureCollection = _.assign({}, entity, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
     metric: null,
     value: null,

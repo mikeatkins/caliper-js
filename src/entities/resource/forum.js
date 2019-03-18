@@ -25,6 +25,7 @@ var entityType = require('../entityType').forum;
  */
 var Forum = _.assign({}, collection, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term
 });
 

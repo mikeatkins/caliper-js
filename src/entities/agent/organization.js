@@ -25,6 +25,7 @@ var entityType = require('../entityType').organization;
  */
 var Organization = _.assign({}, agent, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   subOrganizationOf: {},
   members: []

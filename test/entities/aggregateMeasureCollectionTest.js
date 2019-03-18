@@ -52,7 +52,7 @@ testUtils.readFile(path, function(err, fixture) {
             metric: metric.unitsCompleted.term,
             name: "Units Completed",
             metricValue: 12.0,
-            metricValueMax: 25.0,
+            maxMetricValue: 25.0,
             startedAtTime: moment.utc("2019-08-15T10:15:00.000Z"),
             endedAtTime: moment.utc("2019-11-15T10:15:00.000Z")
         });

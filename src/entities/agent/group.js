@@ -25,6 +25,7 @@ var entityType = require('../entityType').group;
  */
 var Group = _.assign({}, organization, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term
 });
 

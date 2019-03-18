@@ -25,11 +25,12 @@ var entityType = require('../entityType').multiselectScale;
  */
 var MultiselectScale = _.assign({}, scale, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
-    points: null,
+    scalePoints: null,
     itemLabels: [],
     itemValues: [],
-    orderedSelection: null,
+    isOrderedSelection: null,
     minSelections: null,
     maxSelections: null
 });

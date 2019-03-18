@@ -25,6 +25,7 @@ var entityType = require('../entityType').highlightAnnotation;
  */
 var HighlightAnnotation = _.assign({}, annotation, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   selection: {},
   selectionText: null

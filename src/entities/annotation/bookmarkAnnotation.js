@@ -25,6 +25,7 @@ var entityType = require('../entityType').bookmarkAnnotation;
  */
 var BookmarkAnnotation = _.assign({}, annotation, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   bookmarkNotes: null
 });

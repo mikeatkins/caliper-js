@@ -25,6 +25,7 @@ var entityType = require('../entityType').session;
  */
 var Session = _.assign({}, entity, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   user: {},
   startedAtTime: null,

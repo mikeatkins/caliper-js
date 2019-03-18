@@ -25,6 +25,7 @@ var entityType = require('../entityType').agent;
  */
 var Agent = _.assign({}, entity, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term
 });
 

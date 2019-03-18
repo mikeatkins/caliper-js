@@ -25,6 +25,7 @@ var entityType = require('../entityType').annotation;
  */
 var Annotation = _.assign({}, entity, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   annotator: {},
   annotated: {}

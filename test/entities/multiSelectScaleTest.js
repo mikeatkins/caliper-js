@@ -53,10 +53,10 @@ testUtils.readFile(path, function(err, fixture) {
     var entity = entityFactory().create(MultiselectScale, {
       id: "https://example.edu/scale/3",
       question: "How do you feel about this content? (select one or more)",
-      points: 5,
+      scalePoints: 5,
       itemLabels: labels,
       itemValues: values,
-      orderedSelection: false,
+      isOrderedSelection: false,
       minSelections: 1,
       maxSelections: 5,
       dateCreated: moment.utc("2018-08-01T06:00:00.000Z")

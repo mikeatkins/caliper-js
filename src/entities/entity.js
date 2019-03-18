@@ -20,9 +20,10 @@ var _ = require('lodash');
 var config = require('../config/config');
 var entityType = require('./entityType').entity;
 
+// Anonymous entity
 var proto = {
-  id: null,
-  type: null,
+  id: entityType.iri,
+  type: entityType.term,
   name: null,
   description: null,
   dateCreated: null,
@@ -36,9 +37,8 @@ var proto = {
  */
 var createEntity = function createEntity() {
   var context = {'@context': entityType.context};
-  var defaults = {type: entityType.term};
 
-  return config.dataFormat === "JSON-LD" ? _.assign({}, context, proto, defaults) : _.assign({}, proto, defaults)
+  return config.dataFormat === "JSON-LD" ? _.assign({}, context, proto) : _.assign({}, proto)
 };
 
 // Object delegation

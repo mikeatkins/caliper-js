@@ -26,6 +26,7 @@ var entityType = require('../entityType').assessment;
  */
 var Assessment = _.assign({}, collection, assignable, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term
 });
 

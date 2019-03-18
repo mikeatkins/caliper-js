@@ -25,6 +25,7 @@ var entityType = require('../entityType').searchResponse;
  */
 var SearchResponse = _.assign({}, entity, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
     searchProvider: {},
     searchTarget: {},

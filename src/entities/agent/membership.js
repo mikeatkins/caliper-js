@@ -25,6 +25,7 @@ var entityType = require('../entityType').membership;
  */
 var Membership = _.assign({}, entity, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   member: {},
   organization: {},

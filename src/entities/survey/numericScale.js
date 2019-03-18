@@ -25,6 +25,7 @@ var entityType = require('../entityType').numericScale;
  */
 var NumericScale = _.assign({}, scale, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
     minValue: null,
     minLabel: null,

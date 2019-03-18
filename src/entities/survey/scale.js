@@ -25,6 +25,7 @@ var entityType = require('../entityType').scale;
  */
 var Scale = _.assign({}, entity, {
     '@context': entityType.context,
+    id: entityType.iri,
     type: entityType.term,
     question: null
 });

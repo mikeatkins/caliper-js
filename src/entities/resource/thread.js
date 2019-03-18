@@ -25,6 +25,7 @@ var entityType = require('../entityType').thread;
  */
 var Thread = _.assign({}, collection, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term});
 
 module.exports = Thread;

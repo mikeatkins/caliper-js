@@ -25,6 +25,7 @@ var entityType = require('../entityType').mediaObject;
  */
 var MediaObject = _.assign({}, digitalResource, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   duration: null});
 

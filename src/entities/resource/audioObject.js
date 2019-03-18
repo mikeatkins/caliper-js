@@ -25,6 +25,7 @@ var entityType = require('../entityType').audioObject;
  */
 var AudioObject = _.assign({}, mediaObject, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   volumeMin: null,
   volumeMax: null,

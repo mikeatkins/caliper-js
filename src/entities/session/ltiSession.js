@@ -25,6 +25,7 @@ var entityType = require('../entityType').ltiSession;
  */
 var LtiSession = _.assign({}, session, {
   '@context': entityType.context,
+  id: entityType.iri,
   type: entityType.term,
   messageParameters: {}
 });
