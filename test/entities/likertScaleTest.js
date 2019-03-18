@@ -49,7 +49,7 @@ testUtils.readFile(path, function(err, fixture) {
     
     var entity = entityFactory().create(LikertScale, {
       id: "https://example.edu/scale/2",
-      points: 4,
+      scalePoints: 4,
       question: "Do you agree with the opinion presented?",
       itemLabels: labels,
       itemValues: values
