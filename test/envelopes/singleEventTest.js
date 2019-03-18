@@ -24,7 +24,7 @@ var config = require('../../src/config/config');
 var clientUtils = require('../../src/clients/clientUtils');
 
 var eventFactory = require('../../src/events/eventFactory');
-var validator = require('../../src/validators/validator');
+var validator = require('../../src/validators/baseValidator');
 var AssessmentEvent = require('../../src/events/assessmentEvent');
 var actions = require('../../src/actions/actions');
 

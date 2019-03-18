@@ -23,7 +23,6 @@ var test = require('tape');
 // Event
 var config = require('../../src/config/config');
 var eventFactory = require('../../src/events/eventFactory');
-var validator = require('../../src/validators/validator');
 var AssessmentItemEvent = require('../../src/events/assessmentItemEvent');
 var actions = require('../../src/actions/actions');
 

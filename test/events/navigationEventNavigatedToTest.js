@@ -22,7 +22,6 @@ var test = require('tape');
 
 var config = require('../../src/config/config');
 var eventFactory = require('../../src/events/eventFactory');
-var validator = require('../../src/validators/validator');
 var NavigationEvent = require('../../src/events/navigationEvent');
 var actions = require('../../src/actions/actions');
 

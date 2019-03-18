@@ -221,7 +221,7 @@ function hasUri(opts) {
 function hasUuidUrn(opts) {
   if (!(_.isNil(opts.id))) {
     var uri = urijs.parse(opts.id);
-    return uri.scheme === "urn:uuid" && isUuid(uri.path) ? true : false;
+    return uri.scheme == "urn" && uri.nid == "uuid" && isUuid(uri.uuid) ? true : false;
   } else {
     return false;
   }
