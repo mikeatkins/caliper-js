@@ -16,43 +16,18 @@
  * with this program. If not, see http://www.gnu.org/licenses/.
  */
 
-const objectProperties = [
-    "actor",
-    "annotated",
-    "annotator",
-    "assignable",
-    "assignee",
-    "attempt",
-    "commentedOn",
-    "commenter",
-    "creator",
-    "edApp",
-    "extensions",
-    "federatedSession",
-    "generated",
-    "group",
-    "isPartOf",
-    "member",
-    "membership",
-    "messageParameters",
-    "object",
-    "organization",
-    "query",
-    "question",
-    "rated",
-    "rater",
-    "ratingComment",
-    "referrer",
-    "replyTo",
-    "scale",
-    "scoredBy",
-    "searchProvider",
-    "searchTarget",
-    "selection",
-    "session",
-    "subOrganizationOf",
-    "target",
-    "user"
-];
+var _ = require('lodash');
+var entity = require('../entity');
+var entityType = require('../entityType').question;
 
-module.exports = objectProperties;
+/**
+ * Link Question to delegate Entity and assign default property values.
+ */
+var Question = _.assign({}, entity, {
+    '@context': entityType.context,
+    id: entityType.iri,
+    type: entityType.term,
+    questionPosed: null
+});
+
+module.exports = Question;

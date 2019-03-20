@@ -29,8 +29,8 @@ var Rating = _.assign({}, entity, {
     type: entityType.term,
     rater: null,
     rated: null,
-    scale: null,
-    selections: null,
+    question: null,
+    selections: [],
     ratingComment: null
 });
 
