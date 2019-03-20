@@ -224,10 +224,20 @@ var entityType = {
     term: "Query",
     iri: "http://purl.imsglobal.org/caliper/Query"
   },
+  question: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "Question",
+    iri: "http://purl.imsglobal.org/caliper/Question"
+  },
   rating: {
     context: config.jsonldContext.v1p1_feedback,
     term: "Rating",
     iri: "http://purl.imsglobal.org/caliper/Rating"
+  },
+  ratingScaleQuestion: {
+    context: config.jsonldContext.v1p1_feedback,
+    term: "RatingScaleQuestion",
+    iri: "http://purl.imsglobal.org/caliper/RatingScaleQuestion"
   },
   response: {
     context: config.jsonldContext.v1p1,
