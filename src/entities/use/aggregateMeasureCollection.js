@@ -17,21 +17,16 @@
  */
 
 var _ = require('lodash');
-var entity = require('../entity');
+var collection = require('../collection');
 var entityType = require('../entityType').aggregateMeasureCollection;
 
 /**
- * Link AggregateMeasureCollection to delegate Entity and assign default property values.
+ * Link AggregateMeasureCollection to delegate Collection and assign default property values.
  */
-var AggregateMeasureCollection = _.assign({}, entity, {
+var AggregateMeasureCollection = _.assign({}, collection, {
     '@context': entityType.context,
     id: entityType.iri,
-    type: entityType.term,
-    metric: null,
-    value: null,
-    valueMax: null,
-    startedAtTime: null,
-    endedAtTime: null
+    type: entityType.term
 });
 
 module.exports = AggregateMeasureCollection;

@@ -74,6 +74,11 @@ var entityType = {
     term: "Chapter",
     iri: "http://purl.imsglobal.org/caliper/Chapter"
   },
+  collection: {
+    context: config.jsonldContext.v1p2,
+    term: "Collection",
+    iri: "http://purl.imsglobal.org/caliper/Collection"
+  },
   comment: {
     context: config.jsonldContext.v1p1_feedback,
     term: "Comment",
