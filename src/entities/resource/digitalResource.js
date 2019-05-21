@@ -27,6 +27,7 @@ var DigitalResource = _.assign({}, entity, {
   '@context': entityType.context,
   id: entityType.iri,
   type: entityType.term,
+  storageName: null,
   mediaType: null,
   creators: [],
   keywords: [],
