@@ -314,7 +314,7 @@ Caliper.Entities.Question                   = require('./entities/survey/questio
 Caliper.Entities.Rating                     = require('./entities/survey/rating');
 Caliper.Entities.RatingScaleQuestion        = require('./entities/survey/ratingScaleQuestion');
 Caliper.Entities.Scale                      = require('./entities/survey/scale');
-Caliper.Entities.Survey                     = require('./entities/survey/survey')
+Caliper.Entities.Survey                     = require('./entities/survey/survey');
 
 // Session
 Caliper.Entities.Session                   = require('./entities/session/session');

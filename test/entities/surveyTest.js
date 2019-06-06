@@ -47,10 +47,10 @@ testUtils.readFile(path, function(err, fixture) {
     questionnaires.push(entityFactory().create(Questionnaire, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30"), dateCreated: QUESTIONNAIRE_TIMESTAMP}));
     questionnaires.push(entityFactory().create(Questionnaire, {id: BASE_COM_IRI.concat("/surveys/100/questionnaires/31"), dateCreated: QUESTIONNAIRE_TIMESTAMP}));
 
-    questionnaires[0].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30/items/1")}))
-    questionnaires[0].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30/items/2")}))
-    questionnaires[1].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31/items/1")}))
-    questionnaires[1].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31/items/2")}))
+    questionnaires[0].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30/items/1")}));
+    questionnaires[0].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30/items/2")}));
+    questionnaires[1].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31/items/1")}));
+    questionnaires[1].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31/items/2")}));
 
     var entity = entityFactory().create(Survey, {
       id: BASE_EDU_IRI.concat("/collections/1"),
