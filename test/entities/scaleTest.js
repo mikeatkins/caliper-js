@@ -38,7 +38,6 @@ testUtils.readFile(path, function(err, fixture) {
     
     var entity = entityFactory().create(Scale, {
       id: "https://example.edu/scale/1",
-      question: "How would you rate this?",
       dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
     });
     

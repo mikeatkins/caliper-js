@@ -42,15 +42,14 @@ testUtils.readFile(path, function(err, fixture) {
     labels.push("Strongly Agree");
     
     var values = [];
-    values.push(-2);
-    values.push(-1);
-    values.push(1);
-    values.push(2);
+    values.push("-2");
+    values.push("-1");
+    values.push("1");
+    values.push("2");
     
     var entity = entityFactory().create(LikertScale, {
       id: "https://example.edu/scale/2",
       scalePoints: 4,
-      question: "Do you agree with the opinion presented?",
       itemLabels: labels,
       itemValues: values
     });
