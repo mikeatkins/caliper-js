@@ -40,21 +40,28 @@ testUtils.readFile(path, function(err, fixture) {
     t.plan(1);
 
     var BASE_EDU_IRI = "https://example.edu";
-    var BASE_COM_IRI = "https://example.com";
     var QUESTIONNAIRE_TIMESTAMP = "2018-08-01T06:00:00.000Z";
 
-    var  questionnaires = [];
-    questionnaires.push(entityFactory().create(Questionnaire, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30"), dateCreated: QUESTIONNAIRE_TIMESTAMP}));
-    questionnaires.push(entityFactory().create(Questionnaire, {id: BASE_COM_IRI.concat("/surveys/100/questionnaires/31"), dateCreated: QUESTIONNAIRE_TIMESTAMP}));
+    var questionnaireItemOne = entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30/items/1")});
+    var questionnaireItemTwo = entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30/items/2")});
+    var questionnaireItemThree = entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31/items/1")});
+    var questionnaireItemFour = entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31/items/2")});
 
-    questionnaires[0].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30/items/1")}));
-    questionnaires[0].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30/items/2")}));
-    questionnaires[1].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31/items/1")}));
-    questionnaires[1].items.push(entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31/items/2")}));
+    var questionnaireOne = entityFactory().create(Questionnaire, {
+        id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/30"),
+        items: [questionnaireItemOne, questionnaireItemTwo],
+        dateCreated: QUESTIONNAIRE_TIMESTAMP
+     });
+
+    var questionnaireTwo = entityFactory().create(Questionnaire, {
+        id: BASE_EDU_IRI.concat("/surveys/100/questionnaires/31"),
+        items: [questionnaireItemThree, questionnaireItemFour],
+        dateCreated: QUESTIONNAIRE_TIMESTAMP
+    });
 
     var entity = entityFactory().create(Survey, {
       id: BASE_EDU_IRI.concat("/collections/1"),
-      items: questionnaires
+      items: [questionnaireOne, questionnaireTwo]
     });
 
     // Compare
