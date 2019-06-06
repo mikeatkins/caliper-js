@@ -28,6 +28,7 @@ var CourseSection = require('../../src/entities/agent/courseSection');
 var DigitalResource = require('../../src/entities/resource/digitalResource');
 var DigitalResourceCollection = require('../../src/entities/resource/digitalResourceCollection');
 var LikertScale = require('../../src/entities/survey/likertScale');
+var RatingScaleQuestion = require('../../src/entities/survey/RatingScaleQuestion');
 var Rating = require('../../src/entities/survey/rating');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
@@ -46,12 +47,15 @@ testUtils.readFile(path, function(err, fixture) {
     var BASE_SECTION_IRI = "https://example.edu/terms/201801/courses/7/sections/1";
     
     var person = entityFactory().create(Person, {id: BASE_IRI.concat("/users/554433")});
+
     var section = entityFactory().create(CourseSection, {id: BASE_SECTION_IRI});
+
     var collection = entityFactory().create(DigitalResourceCollection, {
       id: BASE_SECTION_IRI.concat("/resources/1"),
       name: "Course Assets",
       isPartOf: section
     });
+
     var resource = entityFactory().create(DigitalResource, {
       id: BASE_SECTION_IRI.concat("/resources/1/syllabus.pdf"),
       name: "Course Syllabus",
@@ -67,15 +71,14 @@ testUtils.readFile(path, function(err, fixture) {
     labels.push("Strongly Agree");
   
     var values = [];
-    values.push(-2);
-    values.push(-1);
-    values.push(1);
-    values.push(2);
+    values.push("-2");
+    values.push("-1");
+    values.push("1");
+    values.push("2");
   
     var likertScale = entityFactory().create(LikertScale, {
       id: "https://example.edu/scale/2",
       scalePoints: 4,
-      question: "Do you agree with the opinion presented?",
       itemLabels: labels,
       itemValues: values
     });
@@ -87,13 +90,18 @@ testUtils.readFile(path, function(err, fixture) {
       value: "I like what you did here but you need to improve on...",
       dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
     });
-    
-    
+
+    var question = entityFactory().create(RatingScaleQuestion, {
+      id: BASE_IRI.concat("/question/2"),
+      questionPosed: "Do you agree with the opinion presented?",
+      scale: likertScale
+    });
+
     var entity = entityFactory().create(Rating, {
       id: BASE_IRI.concat("/users/554433/rating/1"),
       rater: person,
       rated: resource,
-      scale: likertScale,
+      question: question,
       selections: ["1"],
       ratingComment: comment,
       dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
@@ -107,67 +115,3 @@ testUtils.readFile(path, function(err, fixture) {
     //t.end();
   });
 });
-
-/**
-{
-  "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1/FeedbackProfile-extension",
-  "id": "https://example.edu/users/554433/rating/1",
-  "type": "Rating",
-  "rater": {
-  "id": "https://example.edu/users/554433",
-    "type": "Person"
-},
-  "rated": {
-  "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1/syllabus.pdf",
-    "type": "DigitalResource",
-    "name": "Course Syllabus",
-    "mediaType": "application/pdf",
-    "isPartOf": {
-    "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1",
-      "type": "DigitalResourceCollection",
-      "name": "Course Assets",
-      "isPartOf": {
-      "id": "https://example.edu/terms/201801/courses/7/sections/1",
-        "type": "CourseSection"
-    }
-  },
-  "dateCreated": "2018-08-02T11:32:00.000Z"
-},
-  "scale": {
-  "id": "https://example.edu/scale/2",
-    "type": "LikertScale",
-    "points": 4,
-    "question": "Do you agree with the opinion presented?",
-    "itemLabels": ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"],
-    "itemValues": [-2, -1, 1, 2]
-},
-  "selections": ["1"],
-  "ratingComment": {
-  "id": "https://example.edu/terms/201801/courses/7/sections/1/assess/1/items/6/users/665544/responses/1/comment/1",
-    "type": "Comment",
-    "commenter": {
-    "id": "https://example.edu/users/554433",
-      "type": "Person"
-  },
-  "commentedOn": {
-    "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1/syllabus.pdf",
-      "type": "DigitalResource",
-      "name": "Course Syllabus",
-      "mediaType": "application/pdf",
-      "isPartOf": {
-      "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1",
-        "type": "DigitalResourceCollection",
-        "name": "Course Assets",
-        "isPartOf": {
-        "id": "https://example.edu/terms/201801/courses/7/sections/1",
-          "type": "CourseSection"
-      }
-    },
-    "dateCreated": "2018-08-02T11:32:00.000Z"
-  },
-  "value": "I like what you did here but you need to improve on...",
-    "dateCreated": "2018-08-01T06:00:00.000Z"
-},
-  "dateCreated": "2018-08-01T06:00:00.000Z"
-}
-*/

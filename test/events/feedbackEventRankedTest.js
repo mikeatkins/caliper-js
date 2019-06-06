@@ -34,6 +34,7 @@ var LikertScale = require('../../src/entities/survey/likertScale');
 var Membership = require('../../src/entities/agent/membership');
 var Person = require('../../src/entities/agent/person');
 var Rating = require('../../src/entities/survey/rating');
+var RatingScaleQuestion = require('../../src/entities/survey/RatingScaleQuestion');
 var Role = require('../../src/entities/agent/role');
 var Session = require('../../src/entities/session/session');
 var SoftwareApplication = require('../../src/entities/agent/softwareApplication');
@@ -92,10 +93,8 @@ testUtils.readFile(path, function(err, fixture) {
         var likertScale = entityFactory().create(LikertScale, {
             id: BASE_IRI.concat("/scale/2"),
             scalePoints: 4,
-            question: "Do you agree with the opinion presented?",
             itemLabels: ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"],
-            itemValues: [-2, -1, 1, 2],
-            dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
+            itemValues: ["-2", "-1", "1", "2"]
         });
 
         var comment = entityFactory().create(Comment, {
@@ -106,11 +105,17 @@ testUtils.readFile(path, function(err, fixture) {
             dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
         });
 
+        var question = entityFactory().create(RatingScaleQuestion, {
+            id: BASE_IRI.concat("/question/2"),
+            questionPosed: "Do you agree with the opinion presented?",
+            scale: likertScale
+        });
+
         var generated = entityFactory().create(Rating, {
             id: BASE_IRI.concat("/users/554433/rating/1"),
             rater: actor,
             rated: obj,
-            scale: likertScale,
+            question: question,
             selections: ["1"],
             ratingComment: comment,
             dateCreated: moment.utc("2018-08-01T06:00:00.000Z")
@@ -157,3 +162,118 @@ testUtils.readFile(path, function(err, fixture) {
         //t.end();
     });
 });
+
+/**
+ {
+  "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1/FeedbackProfile-extension",
+  "id": "urn:uuid:a502e4fc-24c1-11e9-ab14-d663bd873d93",
+  "type": "FeedbackEvent",
+  "actor": {
+    "id": "https://example.edu/users/554433",
+    "type": "Person"
+  },
+  "action": "Ranked",
+  "object": {
+    "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1/syllabus.pdf",
+    "type": "DigitalResource",
+    "name": "Course Syllabus",
+    "mediaType": "application/pdf",
+    "isPartOf": {
+      "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1",
+      "type": "DigitalResourceCollection",
+      "name": "Course Assets",
+      "isPartOf": {
+        "id": "https://example.edu/terms/201801/courses/7/sections/1",
+        "type": "CourseSection"
+      }
+    },
+    "dateCreated": "2018-08-02T11:32:00.000Z"
+  },
+  "generated": {
+    "id": "https://example.edu/users/554433/rating/1",
+    "type": "Rating",
+    "rater": {
+      "id": "https://example.edu/users/554433",
+      "type": "Person"
+    },
+    "rated": {
+      "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1/syllabus.pdf",
+      "type": "DigitalResource",
+      "name": "Course Syllabus",
+      "mediaType": "application/pdf",
+      "isPartOf": {
+        "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1",
+        "type": "DigitalResourceCollection",
+        "name": "Course Assets",
+        "isPartOf": {
+          "id": "https://example.edu/terms/201801/courses/7/sections/1",
+          "type": "CourseSection"
+        }
+      },
+      "dateCreated": "2018-08-02T11:32:00.000Z"
+    },
+    "question": {
+      "id": "https://example.edu/question/2",
+      "type": "RatingScaleQuestion",
+      "questionPosed": "Do you agree with the opinion presented?",
+      "scale": {
+        "id": "https://example.edu/scale/2",
+        "type": "LikertScale",
+        "scalePoints": 4,
+        "itemLabels": ["Strongly Disagree", "Disagree", "Agree", "Strongly Agree"],
+        "itemValues": ["-2", "-1", "1", "2"]
+      }
+    },
+    "selections": ["1"],
+    "ratingComment": {
+      "id": "https://example.edu/terms/201801/courses/7/sections/1/assess/1/items/6/users/665544/responses/1/comment/1",
+      "type": "Comment",
+      "commenter": {
+        "id": "https://example.edu/users/554433",
+        "type": "Person"
+      },
+      "commentedOn": {
+        "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1/syllabus.pdf",
+        "type": "DigitalResource",
+        "name": "Course Syllabus",
+        "mediaType": "application/pdf",
+        "isPartOf": {
+          "id": "https://example.edu/terms/201801/courses/7/sections/1/resources/1",
+          "type": "DigitalResourceCollection",
+          "name": "Course Assets",
+          "isPartOf": {
+            "id": "https://example.edu/terms/201801/courses/7/sections/1",
+            "type": "CourseSection"
+          }
+        },
+        "dateCreated": "2018-08-02T11:32:00.000Z"
+      },
+      "value": "I like what you did here but you need to improve on...",
+      "dateCreated": "2018-08-01T06:00:00.000Z"
+    },
+    "dateCreated": "2018-08-01T06:00:00.000Z"
+  },
+  "eventTime": "2018-11-15T10:05:00.000Z",
+  "edApp": "https://example.edu",
+  "group": {
+    "id": "https://example.edu/terms/201801/courses/7/sections/1",
+    "type": "CourseSection",
+    "courseNumber": "CPS 435-01",
+    "academicSession": "Fall 2018"
+  },
+  "membership": {
+    "id": "https://example.edu/terms/201801/courses/7/sections/1/rosters/1",
+    "type": "Membership",
+    "member": "https://example.edu/users/554433",
+    "organization": "https://example.edu/terms/201801/courses/7/sections/1",
+    "roles": [ "Learner" ],
+    "status": "Active",
+    "dateCreated": "2018-08-01T06:00:00.000Z"
+  },
+  "session": {
+    "id": "https://example.edu/sessions/1f6442a482de72ea6ad134943812bff564a76259",
+    "type": "Session",
+    "startedAtTime": "2018-11-15T10:00:00.000Z"
+  }
+}
+*/

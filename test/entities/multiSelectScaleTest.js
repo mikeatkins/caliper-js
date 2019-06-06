@@ -52,7 +52,6 @@ testUtils.readFile(path, function(err, fixture) {
     
     var entity = entityFactory().create(MultiselectScale, {
       id: "https://example.edu/scale/3",
-      question: "How do you feel about this content? (select one or more)",
       scalePoints: 5,
       itemLabels: labels,
       itemValues: values,
