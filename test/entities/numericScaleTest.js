@@ -38,7 +38,6 @@ testUtils.readFile(path, function(err, fixture) {
     
     var entity = entityFactory().create(NumericScale, {
       id: "https://example.edu/scale/4",
-      question: "How do you feel about this content?",
       minValue: 0.0,
       minLabel: "Disliked",
       maxValue: 10.0,

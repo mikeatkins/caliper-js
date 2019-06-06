@@ -55,21 +55,6 @@ testUtils.readFile(path, function(err, fixture) {
 
         });
 
-        var pdf = entityFactory().create(Document, {
-            id: BASE_IRI.concat("/catalog/record/01234?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29"),
-            mediaType: "application/pdf"
-        });
-
-        var video = entityFactory().create(VideoObject, {
-            id: BASE_IRI.concat("/catalog/record/09876?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29"),
-            mediaType: "video/ogg"
-        });
-
-        var epub = entityFactory().create(Document, {
-            id: BASE_IRI.concat("/catalog/record/05432?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29"),
-            mediaType: "application/epub+zip"
-        });
-
         var provider = entityFactory().create(SoftwareApplication, {id: BASE_IRI});
 
         var target = entityFactory().create(SoftwareApplication, {id: BASE_IRI.concat("/catalog")});
@@ -81,7 +66,6 @@ testUtils.readFile(path, function(err, fixture) {
             searchTarget: target,
             query: query,
             searchResultsItemCount: 3,
-            searchResults: [ pdf, video, epub ],
             dateCreated: moment.utc("2018-11-15T10:05:00.000Z")
         });
 
@@ -93,48 +77,3 @@ testUtils.readFile(path, function(err, fixture) {
         //t.end();
     });
 });
-
-/*
-{
-  "@context": "http://purl.imsglobal.org/ctx/caliper/v1p1/SearchProfile-extension",
-  "id": "https://example.edu/users/554433/response?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29",
-  "type": "SearchResponse",
-  "searchProvider": {
-    "id": "https://example.edu",
-    "type": "SoftwareApplication"
-  },
-  "searchTarget": {
-    "id": "https://example.edu/catalog",
-    "type": "SoftwareApplication"
-  },
-  "query": {
-    "id": "https://example.edu/users/554433/search?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29",
-    "type": "Query",
-    "creator": {
-      "id": "https://example.edu/users/554433",
-      "type": "Person"
-    },
-    "searchTarget": "https://example.edu/catalog",
-    "searchTerms": "IMS AND (Caliper OR Analytics)",
-    "dateCreated": "2018-11-15T10:05:00.000Z"
-  },
-  "searchResultsItemCount": 3,
-  "searchResults": [{
-    "id": "https://example.edu/catalog/record/01234?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29",
-    "type": "Document",
-    "mediaType": "application/pdf"
-  },
-    {
-      "id": "https://example.edu/catalog/record/09876?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29",
-      "type": "VideoObject",
-      "mediaType": "video/ogg"
-    },
-    {
-      "id": "https://example.edu/catalog/record/05432?query=IMS%20AND%20%28Caliper%20OR%20Analytics%29",
-      "type": "Document",
-      "mediaType": "application/epub+zip"
-    }
-  ],
-  "dateCreated": "2018-11-15T10:05:00.000Z"
-}
- */
