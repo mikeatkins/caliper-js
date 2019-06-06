@@ -34,6 +34,7 @@ const Config = {
     v1p1_feedback: "http://purl.imsglobal.org/ctx/caliper/v1p1/FeedbackProfile-extension",
     v1p1_resourceManagement: "http://purl.imsglobal.org/ctx/caliper/v1p1/ResourceManagementProfile-extension",
     v1p1_search: "http://purl.imsglobal.org/ctx/caliper/v1p1/SearchProfile-extension",
+    v1p1_survey: "http://purl.imsglobal.org/ctx/caliper/v1p1/SurveyProfile-extension",
     v1p1_toolLaunch: "http://purl.imsglobal.org/ctx/caliper/v1p1/ToolLaunchProfile-extension",
     v1p1_toolUse: "http://purl.imsglobal.org/ctx/caliper/v1p1/ToolUseProfile-extension",
     v1p2: "https://purl.imsglobal.org/caliper/v1p2/context/Core"

@@ -282,6 +282,8 @@ Caliper.Entities.MediaObject               = require('./entities/resource/mediaO
 Caliper.Entities.MediaLocation             = require('./entities/resource/mediaLocation');
 Caliper.Entities.Message                   = require('./entities/resource/message');
 Caliper.Entities.Page                      = require('./entities/resource/page');
+Caliper.Entities.Questionnaire             = require('./entities/resource/questionnaire')
+Caliper.Entities.QuestionnaireItem         = require('./entities/resource/questionnaireItem')
 Caliper.Entities.Thread                    = require('./entities/resource/thread');
 Caliper.Entities.VideoObject               = require('./entities/resource/videoObject');
 Caliper.Entities.WebPage                   = require('./entities/resource/webPage');
@@ -312,6 +314,7 @@ Caliper.Entities.Question                   = require('./entities/survey/questio
 Caliper.Entities.Rating                     = require('./entities/survey/rating');
 Caliper.Entities.RatingScaleQuestion        = require('./entities/survey/ratingScaleQuestion');
 Caliper.Entities.Scale                      = require('./entities/survey/scale');
+Caliper.Entities.Survey                     = require('./entities/survey/survey')
 
 // Session
 Caliper.Entities.Session                   = require('./entities/session/session');

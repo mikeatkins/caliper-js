@@ -234,6 +234,16 @@ var entityType = {
     term: "Question",
     iri: "http://purl.imsglobal.org/caliper/Question"
   },
+  questionnaire: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "Questionnaire",
+    iri: "http://purl.imsglobal.org/caliper/Questionnaire"
+  },
+  questionnaireItem: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "QuestionnaireItem",
+    iri: "http://purl.imsglobal.org/caliper/QuestionnaireItem"
+  },
   rating: {
     context: config.jsonldContext.v1p1_feedback,
     term: "Rating",
@@ -288,6 +298,11 @@ var entityType = {
     context: config.jsonldContext.v1p1,
     term: "SoftwareApplication",
     iri: "http://purl.imsglobal.org/caliper/SoftwareApplication"
+  },
+  survey: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "Survey",
+    iri: "http://purl.imsglobal.org/caliper/Survey"
   },
   tagAnnotation: {
     context: config.jsonldContext.v1p1,
