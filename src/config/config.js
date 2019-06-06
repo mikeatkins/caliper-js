@@ -39,9 +39,9 @@ const Config = {
     v1p2: "https://purl.imsglobal.org/caliper/v1p2/context/Core"
   },
   testFixturesBaseDir: {
-    v1p0: "../caliper-common-fixtures/v1p0/",
-    v1p1: "../caliper-common-fixtures/v1p1/",
-    v1p2: "../caliper-common-fixtures/v1p2/"
+    v1p0: "../caliper-spec/fixtures/v1p0/",
+    v1p1: "../caliper-spec/fixtures/v1p1/",
+    v1p2: "../caliper-spec/fixtures/v1p2/"
   },
   uuidVersion: 4
 };
