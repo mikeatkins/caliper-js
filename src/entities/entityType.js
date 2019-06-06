@@ -94,6 +94,16 @@ var entityType = {
     term: "CourseSection",
     iri: "http://purl.imsglobal.org/caliper/CourseSection"
   },
+  dateTimeQuestion: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "DateTimeQuestion",
+    iri: "http://purl.imsglobal.org/caliper/DateTimeQuestion"
+  },
+  dateTimeResponse: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "DateTimeResponse",
+    iri: "http://purl.imsglobal.org/caliper/DateTimeResponse"
+  },
   digitalResource: {
     context: config.jsonldContext.v1p1,
     term: "DigitalResource",

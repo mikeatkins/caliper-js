@@ -17,13 +17,13 @@
  */
 
 var _ = require('lodash');
-var entity = require('../entity');
+var digitalResourceCollection = require('./digitalResourceCollection');
 var entityType = require('../entityType').questionnaire;
 
 /**
- * Link Survey to delegate Entity and assign default property values.
+ * Link Questionnaire to delegate Entity and assign default property values.
  */
-var Questionnaire = _.assign({}, entity, {
+var Questionnaire = _.assign({}, digitalResourceCollection, {
     '@context': entityType.context,
     id: entityType.iri,
     type: entityType.term,

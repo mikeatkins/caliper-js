@@ -17,19 +17,17 @@
  */
 
 var _ = require('lodash');
-var digitalResource = require('./digitalResource');
-var entityType = require('../entityType').questionnaireItem;
+var question = require('./question');
+var entityType = require('../entityType').ratingScaleQuestion;
 
 /**
- * Link QuestionnaireItem to delegate Entity and assign default property values.
+ * Link RatingScaleQuestion to delegate Entity and assign default property values.
  */
-var QuestionnaireItem = _.assign({}, digitalResource, {
+var RatingScaleQuestion = _.assign({}, question, {
     '@context': entityType.context,
     id: entityType.iri,
     type: entityType.term,
-    question: null,
-    categories: [],
-    weight: null
+    scale: null
 });
 
-module.exports = QuestionnaireItem;
+module.exports = RatingScaleQuestion;

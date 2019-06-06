@@ -293,8 +293,14 @@ Caliper.Entities.Attempt                   = require('./entities/outcome/attempt
 Caliper.Entities.Result                    = require('./entities/outcome/result');
 Caliper.Entities.Score                     = require('./entities/outcome/score');
 
+// Question
+Caliper.Entities.Question                  = require('./entities/question/question');
+Caliper.Entities.DateTimeQuestion          = require('./entities/question/dateTimeQuestion');
+Caliper.Entities.RatingScaleQuestion       = require('./entities/question/ratingScaleQuestion');
+
 // Response
 Caliper.Entities.Response                  = require('./entities/response/response');
+Caliper.Entities.DateTimeResponse          = require('./entities/response/dateTimeResponse');
 Caliper.Entities.FillinBlankResponse       = require('./entities/response/fillinBlankResponse');
 Caliper.Entities.MultipleChoiceResponse    = require('./entities/response/multipleChoiceResponse');
 Caliper.Entities.MultipleResponseResponse  = require('./entities/response/multipleResponseResponse');
@@ -310,9 +316,7 @@ Caliper.Entities.Comment                    = require('./entities/survey/comment
 Caliper.Entities.LikertScale                = require('./entities/survey/likertScale');
 Caliper.Entities.MultiselectScale           = require('./entities/survey/multiselectScale');
 Caliper.Entities.NumericScale               = require('./entities/survey/numericScale');
-Caliper.Entities.Question                   = require('./entities/survey/question');
 Caliper.Entities.Rating                     = require('./entities/survey/rating');
-Caliper.Entities.RatingScaleQuestion        = require('./entities/survey/ratingScaleQuestion');
 Caliper.Entities.Scale                      = require('./entities/survey/scale');
 Caliper.Entities.Survey                     = require('./entities/survey/survey');
 

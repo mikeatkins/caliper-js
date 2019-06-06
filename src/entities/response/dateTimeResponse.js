@@ -17,19 +17,17 @@
  */
 
 var _ = require('lodash');
-var digitalResource = require('./digitalResource');
-var entityType = require('../entityType').questionnaireItem;
+var response = require('./response');
+var entityType = require('../entityType').dateTimeResponse;
 
 /**
- * Link QuestionnaireItem to delegate Entity and assign default property values.
+ * Link DateTimeResponse to delegate Entity and assign default property values.
  */
-var QuestionnaireItem = _.assign({}, digitalResource, {
-    '@context': entityType.context,
-    id: entityType.iri,
-    type: entityType.term,
-    question: null,
-    categories: [],
-    weight: null
+var DateTimeResponse = _.assign({}, response, {
+  '@context': entityType.context,
+  id: entityType.iri,
+  type: entityType.term,
+  dateTimeSelected: null
 });
 
-module.exports = QuestionnaireItem;
+module.exports = DateTimeResponse;
