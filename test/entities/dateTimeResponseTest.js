@@ -22,46 +22,30 @@ var test = require('tape');
 
 var config = require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var Survey = require('../../src/entities/survey/survey');
-var Questionnaire = require('../../src/entities/resource/questionnaire');
-var QuestionnaireItem = require('../../src/entities/resource/questionnaireItem');
+var DateTimeResponse = require('../../src/entities/response/dateTimeResponse');
 
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + 'caliperEntitySurvey.json';
+var path = config.testFixturesBaseDir.v1p1 + 'caliperEntityDateTimeResponse.json';
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
 
-  test('surveyTest', function (t) {
+  test('dateTimeResponseTest', function (t) {
 
     // Plan for N assertions
     t.plan(1);
 
     var BASE_EDU_IRI = 'https://example.edu';
-    var QUESTIONNAIRE_TIMESTAMP = '2018-08-01T06:00:00.000Z';
 
-    var questionnaireItemOne = entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/1')});
-    var questionnaireItemTwo = entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/2')});
-    var questionnaireItemThree = entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/31/items/1')});
-    var questionnaireItemFour = entityFactory().create(QuestionnaireItem, {id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/31/items/2')});
-
-    var questionnaireOne = entityFactory().create(Questionnaire, {
-        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30'),
-        items: [questionnaireItemOne, questionnaireItemTwo],
-        dateCreated: QUESTIONNAIRE_TIMESTAMP
-    });
-
-    var questionnaireTwo = entityFactory().create(Questionnaire, {
-        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/31'),
-        items: [questionnaireItemThree, questionnaireItemFour],
-        dateCreated: QUESTIONNAIRE_TIMESTAMP
-    });
-
-    var entity = entityFactory().create(Survey, {
-      id: BASE_EDU_IRI.concat('/collections/1'),
-      items: [questionnaireOne, questionnaireTwo]
+    var entity = entityFactory().create(DateTimeResponse, {
+        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/4/users/554433/responses/4'),
+        dateTimeSelected: '2018-12-15T06:00:00.000Z',
+        startedAtTime: '2018-08-01T05:55:48.000Z',
+        endedAtTime: '2018-08-01T06:00:00.000Z',
+        duration: 'PT4M12S',
+        dateCreated: '2018-08-01T06:00:00.000Z'
     });
 
     // Compare

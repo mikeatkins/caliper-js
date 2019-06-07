@@ -18,12 +18,12 @@
 
 var _ = require('lodash');
 var question = require('./question');
-var entityType = require('../entityType').question;
+var entityType = require('../entityType').dateTimeQuestion;
 
 /**
  * Link DateTimeQuestion to delegate Entity and assign default property values.
  */
-var DateTimeQuestion = _.assign({}, entity, {
+var DateTimeQuestion = _.assign({}, question, {
     '@context': entityType.context,
     id: entityType.iri,
     type: entityType.term,
