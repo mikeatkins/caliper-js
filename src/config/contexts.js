@@ -43,6 +43,11 @@ var contexts =  [
         precedence: 11.5
     },
     {
+        version: "v1p1/SurveyProfile-extension",
+        iri: "http://purl.imsglobal.org/ctx/caliper/v1p1/SurveyProfile-extension",
+        precedence: 11.5
+    },
+    {
         version: "v1p1/ToolUseProfile-extension",
         iri: "http://purl.imsglobal.org/ctx/caliper/v1p1/ToolUseProfile-extension",
         precedence: 11.5

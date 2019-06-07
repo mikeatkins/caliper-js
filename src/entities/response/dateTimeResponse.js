@@ -17,17 +17,17 @@
  */
 
 var _ = require('lodash');
-var entity = require('../entity');
-var entityType = require('../entityType').ratingScaleQuestion;
+var response = require('./response');
+var entityType = require('../entityType').dateTimeResponse;
 
 /**
- * Link RatingScaleQuestion to delegate Entity and assign default property values.
+ * Link DateTimeResponse to delegate Entity and assign default property values.
  */
-var RatingScaleQuestion = _.assign({}, entity, {
-    '@context': entityType.context,
-    id: entityType.iri,
-    type: entityType.term,
-    scale: null
+var DateTimeResponse = _.assign({}, response, {
+  '@context': entityType.context,
+  id: entityType.iri,
+  type: entityType.term,
+  dateTimeSelected: null
 });
 
-module.exports = RatingScaleQuestion;
+module.exports = DateTimeResponse;

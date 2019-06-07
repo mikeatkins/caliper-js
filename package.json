@@ -38,9 +38,9 @@
   },
   "devDependencies": {
     "deep-diff": ">=1.0.2",
-    "grunt": ">=1.0.x",
+    "grunt": "^1.0.4",
     "grunt-browserify": ">=5.3.x",
-    "grunt-jsdoc": ">=2.3.x",
+    "grunt-jsdoc": "^2.4.0",
     "grunt-tape": ">=0.1.x",
     "jsonfile": ">=5.0.0",
     "karma": ">=4.0.1",

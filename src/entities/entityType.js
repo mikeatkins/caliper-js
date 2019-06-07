@@ -94,6 +94,16 @@ var entityType = {
     term: "CourseSection",
     iri: "http://purl.imsglobal.org/caliper/CourseSection"
   },
+  dateTimeQuestion: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "DateTimeQuestion",
+    iri: "http://purl.imsglobal.org/caliper/DateTimeQuestion"
+  },
+  dateTimeResponse: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "DateTimeResponse",
+    iri: "http://purl.imsglobal.org/caliper/DateTimeResponse"
+  },
   digitalResource: {
     context: config.jsonldContext.v1p1,
     term: "DigitalResource",
@@ -234,6 +244,16 @@ var entityType = {
     term: "Question",
     iri: "http://purl.imsglobal.org/caliper/Question"
   },
+  questionnaire: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "Questionnaire",
+    iri: "http://purl.imsglobal.org/caliper/Questionnaire"
+  },
+  questionnaireItem: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "QuestionnaireItem",
+    iri: "http://purl.imsglobal.org/caliper/QuestionnaireItem"
+  },
   rating: {
     context: config.jsonldContext.v1p1_feedback,
     term: "Rating",
@@ -288,6 +308,11 @@ var entityType = {
     context: config.jsonldContext.v1p1,
     term: "SoftwareApplication",
     iri: "http://purl.imsglobal.org/caliper/SoftwareApplication"
+  },
+  survey: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "Survey",
+    iri: "http://purl.imsglobal.org/caliper/Survey"
   },
   tagAnnotation: {
     context: config.jsonldContext.v1p1,
