@@ -12,12 +12,16 @@
   "license": "LGPL-3.0",
   "contributors": [
     {
+      "name": "Anthony Whyte",
+      "email": "arwhyte@umich.edu"
+    },
+    {
       "name": "Prashant Nayak",
       "email": "prashant@intellifylearning.com"
     },
     {
-      "name": "Anthony Whyte",
-      "email": "arwhyte@umich.edu"
+      "name": "Sam Sciolla",
+      "email": "ssciolla@umich.edu"
     }
   ],
   "dependencies": {
