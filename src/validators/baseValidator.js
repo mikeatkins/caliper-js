@@ -27,7 +27,9 @@ var config = require('../config/config');
 const regex = RegExp('http:\\/\\/purl.imsglobal.org\\/ctx\\/caliper\\/?v?[0-9]*p?[0-9]*');
 
 /**
- * Check if any Delegate @context values possess a higher precedence than the opts @context value(s). If yes, replace.
+ * Check if any Delegate Caliper @context (event, entity) values possess a higher precedence than the opts @context
+ * value(s). The operation is recursive and will check all entities that comprise the event. If a @context value with
+ * a higher precedence is encountered it will replace the current opts @context value.
  * @param delegate
  * @param opts
  * @returns {*}
