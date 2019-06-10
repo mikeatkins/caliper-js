@@ -236,33 +236,33 @@ Caliper.Config.Config                      = require('./config/config');
 Caliper.Config.Contexts                    = require('./config/contexts');
 
 // Entities
-Caliper.Entities.Entity                   = require('./entities/entity');
-Caliper.Entities.EntityFactory            = require('./entities/entityFactory');
-Caliper.Entities.EntityType               = require('./entities/entityType');
+Caliper.Entities.Entity                    = require('./entities/entity');
+Caliper.Entities.EntityFactory             = require('./entities/entityFactory');
+Caliper.Entities.EntityType                = require('./entities/entityType');
 
 // Agents
-Caliper.Entities.Agent                    = require('./entities/agent/agent');
-Caliper.Entities.Person                   = require('./entities/agent/person');
-Caliper.Entities.SoftwareApplication      = require('./entities/agent/softwareApplication');
+Caliper.Entities.Agent                     = require('./entities/agent/agent');
+Caliper.Entities.Person                    = require('./entities/agent/person');
+Caliper.Entities.SoftwareApplication       = require('./entities/agent/softwareApplication');
 
 // Agents (Organizations)
-Caliper.Entities.CourseOffering           = require('./entities/agent/courseOffering');
-Caliper.Entities.CourseSection            = require('./entities/agent/courseSection');
-Caliper.Entities.Group                    = require('./entities/agent/group');
-Caliper.Entities.Membership               = require('./entities/agent/membership');
-Caliper.Entities.Organization             = require('./entities/agent/organization');
-Caliper.Entities.Role                     = require('./entities/agent/role');
-Caliper.Entities.Status                   = require('./entities/agent/status');
+Caliper.Entities.CourseOffering            = require('./entities/agent/courseOffering');
+Caliper.Entities.CourseSection             = require('./entities/agent/courseSection');
+Caliper.Entities.Group                     = require('./entities/agent/group');
+Caliper.Entities.Membership                = require('./entities/agent/membership');
+Caliper.Entities.Organization              = require('./entities/agent/organization');
+Caliper.Entities.Role                      = require('./entities/agent/role');
+Caliper.Entities.Status                    = require('./entities/agent/status');
 
 // Annotations
-Caliper.Entities.Annotation               = require('./entities/annotation/annotation');
-Caliper.Entities.BookmarkAnnotation       = require('./entities/annotation/bookmarkAnnotation');
-Caliper.Entities.HighlightAnnotation      = require('./entities/annotation/highlightAnnotation');
-Caliper.Entities.SharedAnnotation         = require('./entities/annotation/sharedAnnotation');
-Caliper.Entities.TagAnnotation            = require('./entities/annotation/tagAnnotation');
+Caliper.Entities.Annotation                = require('./entities/annotation/annotation');
+Caliper.Entities.BookmarkAnnotation        = require('./entities/annotation/bookmarkAnnotation');
+Caliper.Entities.HighlightAnnotation       = require('./entities/annotation/highlightAnnotation');
+Caliper.Entities.SharedAnnotation          = require('./entities/annotation/sharedAnnotation');
+Caliper.Entities.TagAnnotation             = require('./entities/annotation/tagAnnotation');
 
 // Assignment-related
-Caliper.Entities.LearningObjective        = require('./entities/resource/learningObjective');
+Caliper.Entities.LearningObjective         = require('./entities/resource/learningObjective');
 
 // Resources
 Caliper.Entities.Assessment                = require('./entities/resource/assessment');
@@ -282,8 +282,9 @@ Caliper.Entities.MediaObject               = require('./entities/resource/mediaO
 Caliper.Entities.MediaLocation             = require('./entities/resource/mediaLocation');
 Caliper.Entities.Message                   = require('./entities/resource/message');
 Caliper.Entities.Page                      = require('./entities/resource/page');
-Caliper.Entities.Questionnaire             = require('./entities/resource/questionnaire')
-Caliper.Entities.QuestionnaireItem         = require('./entities/resource/questionnaireItem')
+Caliper.Entities.Questionnaire             = require('./entities/resource/questionnaire');
+Caliper.Entities.QuestionnaireItem         = require('./entities/resource/questionnaireItem');
+Caliper.Entities.SurveyInvitation          = require('./entities/resource/surveyInvitation');
 Caliper.Entities.Thread                    = require('./entities/resource/thread');
 Caliper.Entities.VideoObject               = require('./entities/resource/videoObject');
 Caliper.Entities.WebPage                   = require('./entities/resource/webPage');
@@ -296,7 +297,9 @@ Caliper.Entities.Score                     = require('./entities/outcome/score')
 // Question
 Caliper.Entities.Question                  = require('./entities/question/question');
 Caliper.Entities.DateTimeQuestion          = require('./entities/question/dateTimeQuestion');
+Caliper.Entities.MultiselectQuestion       = require('./entities/question/multiselectQuestion');
 Caliper.Entities.RatingScaleQuestion       = require('./entities/question/ratingScaleQuestion');
+Caliper.Entities.OpenEndedQuestion         = require('./entities/question/openEndedQuestion');
 
 // Response
 Caliper.Entities.Response                  = require('./entities/response/response');
@@ -304,6 +307,9 @@ Caliper.Entities.DateTimeResponse          = require('./entities/response/dateTi
 Caliper.Entities.FillinBlankResponse       = require('./entities/response/fillinBlankResponse');
 Caliper.Entities.MultipleChoiceResponse    = require('./entities/response/multipleChoiceResponse');
 Caliper.Entities.MultipleResponseResponse  = require('./entities/response/multipleResponseResponse');
+Caliper.Entities.MultiselectResponse       = require('./entities/response/multiselectResponse');
+Caliper.Entities.OpenEndedResponse         = require('./entities/response/openEndedResponse');
+Caliper.Entities.RatingScaleResponse       = require('./entities/response/ratingScaleResponse');
 Caliper.Entities.SelectTextResponse        = require('./entities/response/selectTextResponse');
 Caliper.Entities.TrueFalseResponse         = require('./entities/response/trueFalseResponse');
 
@@ -312,13 +318,13 @@ Caliper.Entities.Query                     = require('./entities/search/query');
 Caliper.Entities.SearchResponse            = require('./entities/search/searchResponse');
 
 // Survey
-Caliper.Entities.Comment                    = require('./entities/survey/comment');
-Caliper.Entities.LikertScale                = require('./entities/survey/likertScale');
-Caliper.Entities.MultiselectScale           = require('./entities/survey/multiselectScale');
-Caliper.Entities.NumericScale               = require('./entities/survey/numericScale');
-Caliper.Entities.Rating                     = require('./entities/survey/rating');
-Caliper.Entities.Scale                      = require('./entities/survey/scale');
-Caliper.Entities.Survey                     = require('./entities/survey/survey');
+Caliper.Entities.Comment                   = require('./entities/survey/comment');
+Caliper.Entities.LikertScale               = require('./entities/survey/likertScale');
+Caliper.Entities.MultiselectScale          = require('./entities/survey/multiselectScale');
+Caliper.Entities.NumericScale              = require('./entities/survey/numericScale');
+Caliper.Entities.Rating                    = require('./entities/survey/rating');
+Caliper.Entities.Scale                     = require('./entities/survey/scale');
+Caliper.Entities.Survey                    = require('./entities/survey/survey');
 
 // Session
 Caliper.Entities.Session                   = require('./entities/session/session');
@@ -343,9 +349,13 @@ Caliper.Events.MediaEvent                  = require('./events/mediaEvent');
 Caliper.Events.MessageEvent                = require('./events/messageEvent');
 Caliper.Events.NavigationEvent             = require('./events/navigationEvent');
 Caliper.Events.GradeEvent                  = require('./events/gradeEvent');
+Caliper.Events.QuestionnaireEvent          = require('./events/questionnaireEvent');
+Caliper.Events.QuestionnaireItemEvent      = require('./events/questionnaireItemEvent');
 Caliper.Events.ResourceManagementEvent     = require('./events/resourceManagementEvent');
 Caliper.Events.SearchEvent                 = require('./events/searchEvent');
 Caliper.Events.SessionEvent                = require('./events/sessionEvent');
+Caliper.Events.SurveyEvent                 = require('./events/surveyEvent');
+Caliper.Events.SurveyInvitationEvent       = require('./events/surveyInvitationEvent');
 Caliper.Events.ThreadEvent                 = require('./events/threadEvent');
 Caliper.Events.ToolLaunchEvent             = require('./events/toolLaunchEvent');
 Caliper.Events.ToolUseEvent                = require('./events/toolUseEvent');
