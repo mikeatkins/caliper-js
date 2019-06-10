@@ -74,6 +74,16 @@ var eventType = {
     term: "NavigationEvent",
     iri: "http://purl.imsglobal.org/caliper/NavigationEvent"
   },
+  questionnaire: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "QuestionnaireEvent",
+    iri: "http://purl.imsglobal.org/caliper/QuestionnaireEvent"
+  },
+  questionnaireItem: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "QuestionnaireItemEvent",
+    iri: "http://purl.imsglobal.org/caliper/QuestionnaireItemEvent"
+  },
   resourceManagement: {
     context: config.jsonldContext.v1p1_resourceManagement,
     term: "ResourceManagementEvent",
@@ -88,6 +98,16 @@ var eventType = {
     context: config.jsonldContext.v1p1,
     term: "SessionEvent",
     iri: "http://purl.imsglobal.org/caliper/SessionEvent"
+  },
+  survey: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "SurveyEvent",
+    iri: "http://purl.imsglobal.org/caliper/SurveyEvent"
+  },
+  surveyInvitation: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "SurveyInvitationEvent",
+    iri: "http://purl.imsglobal.org/caliper/SurveyInvitationEvent"
   },
   thread: {
     context: config.jsonldContext.v1p1,

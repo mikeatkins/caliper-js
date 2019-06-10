@@ -22,19 +22,18 @@ var test = require('tape');
 
 var config = require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var QuestionnaireItem = require('../../src/entities/resource/questionnaireItem');
-var RatingScaleQuestion = require('../../src/entities/question/ratingScaleQuestion');
-var LikertScale = require('../../src/entities/survey/likertScale');
+var RatingScaleQuestion = require('../../src/entities/question/RatingScaleQuestion');
+var LikertScale = require('../../src/entities/survey/likertScale')
 
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + 'caliperEntityQuestionnaireItem.json';
+var path = config.testFixturesBaseDir.v1p1 + 'caliperEntityRatingScaleQuestion.json';
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
 
-  test('questionnaireItemTest', function (t) {
+  test('ratingScaleQuestionTest', function (t) {
 
     // Plan for N assertions
     t.plan(1);
@@ -45,20 +44,14 @@ testUtils.readFile(path, function(err, fixture) {
         id: BASE_EDU_IRI.concat('/scale/2'),
         scalePoints: 4,
         itemLabels: ['Strongly Disagree', 'Disagree', 'Agree', 'Strongly Agree'],
-        itemValues: ['-2', '-1', '1', '2']
+        itemValues: ['-2', '-1', '1', '2'],
+        dateCreated: '2018-08-01T06:00:00.000Z'
     });
 
-    var sampleRatingScaleQuestion = entityFactory().create(RatingScaleQuestion, {
-        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/1/question'),
-        questionPosed: 'How satisfied are you with our services?',
-        scale: sampleLikertScale,
-    });
-
-    var entity = entityFactory().create(QuestionnaireItem, {
-        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/1'),
-        question: sampleRatingScaleQuestion,
-        categories: ['teaching effectiveness', 'Course structure'],
-        weight: 1.0
+    var entity = entityFactory().create(RatingScaleQuestion, {
+        id: BASE_EDU_IRI.concat('/question/2'),
+        questionPosed: 'Do you agree with the opinion presented?',
+        scale: sampleLikertScale
     });
 
     // Compare

@@ -209,6 +209,16 @@ var entityType = {
     term: "MultipleResponseResponse",
     iri: "http://purl.imsglobal.org/caliper/MultipleResponseResponse"
   },
+  multiselectQuestion: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "MultiselectQuestion",
+    iri: "http://purl.imsglobal.org/caliper/MultiselectQuestion"
+  },
+  multiselectResponse : {
+    context: config.jsonldContext.v1p1_survey,
+    term: "MultiselectResponse",
+    iri: "http://purl.imsglobal.org/caliper/MultiselectResponse"
+  },
   multiselectScale: {
     context: config.jsonldContext.v1p1_feedback,
     term: "MultiselectScale",
@@ -218,6 +228,16 @@ var entityType = {
     context: config.jsonldContext.v1p1_feedback,
     term: "NumericScale",
     iri: "http://purl.imsglobal.org/caliper/NumericScale"
+  },
+  openEndedQuestion: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "OpenEndedQuestion",
+    iri: "http://purl.imsglobal.org/caliper/OpenEndedQuestion"
+  },
+  openEndedResponse: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "OpenEndedResponse",
+    iri: "http://purl.imsglobal.org/caliper/OpenEndedResponse"
   },
   organization: {
     context: config.jsonldContext.v1p1,
@@ -263,6 +283,11 @@ var entityType = {
     context: config.jsonldContext.v1p1_feedback,
     term: "RatingScaleQuestion",
     iri: "http://purl.imsglobal.org/caliper/RatingScaleQuestion"
+  },
+  ratingScaleResponse: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "RatingScaleResponse",
+    iri: "http://purl.imsglobal.org/caliper/RatingScaleResponse"
   },
   response: {
     context: config.jsonldContext.v1p1,
@@ -313,6 +338,11 @@ var entityType = {
     context: config.jsonldContext.v1p1_survey,
     term: "Survey",
     iri: "http://purl.imsglobal.org/caliper/Survey"
+  },
+  surveyInvitation: {
+    context: config.jsonldContext.v1p1_survey,
+    term: "SurveyInvitation",
+    iri: "http://purl.imsglobal.org/caliper/SurveyInvitation"
   },
   tagAnnotation: {
     context: config.jsonldContext.v1p1,
