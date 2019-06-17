@@ -101,8 +101,8 @@ testUtils.readFile(path, function(err, fixture) {
       },
       "https://purl.imsglobal.org/spec/lti/claim/lis": {
         "person_sourcedid": "example.edu:71ee7e42-f6d2-414a-80db-b69ac2defd4",
-        "course_offering_sourcedid": "example.edu:SI182-F16",
-        "course_section_sourcedid": "example.edu:SI182-001-F16"
+        "course_offering_sourcedid": "example.edu:SI182-F18",
+        "course_section_sourcedid": "example.edu:SI182-001-F18"
       },
       "http://www.ExamplePlatformVendor.com/session": {
         "id": "89023sj890dju080"
