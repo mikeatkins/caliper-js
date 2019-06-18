@@ -21,7 +21,7 @@ var test = require('tape');
 
 var config =  require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var LikertScale = require('../../src/entities/survey/likertScale');
+var LikertScale = require('../../src/entities/scale/likertScale');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 

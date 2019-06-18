@@ -24,7 +24,7 @@ var config = require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
 var QuestionnaireItem = require('../../src/entities/resource/questionnaireItem');
 var RatingScaleQuestion = require('../../src/entities/question/ratingScaleQuestion');
-var LikertScale = require('../../src/entities/survey/likertScale');
+var LikertScale = require('../../src/entities/scale/likertScale');
 
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');

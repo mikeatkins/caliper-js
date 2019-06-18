@@ -22,7 +22,7 @@ var test = require('tape');
 
 var config =  require('../../src/config/config');
 var entityFactory = require('../../src/entities/entityFactory');
-var MultiselectScale = require('../../src/entities/survey/multiselectScale');
+var MultiselectScale = require('../../src/entities/scale/multiselectScale');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 

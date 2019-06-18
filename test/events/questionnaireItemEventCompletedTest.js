@@ -31,6 +31,7 @@ var LikertScale = require('../../src/entities/scale/likertScale');
 var Membership = require('../../src/entities/agent/membership');
 var Person = require('../../src/entities/agent/person');
 var RatingScaleQuestion = require('../../src/entities/question/ratingScaleQuestion');
+var RatingScaleResponse = require('../../src/entities/response/ratingScaleResponse');
 var QuestionnaireItem = require('../../src/entities/resource/questionnaireItem');
 var Role = require('../../src/entities/agent/role');
 var Session = require('../../src/entities/session/session');
@@ -39,12 +40,12 @@ var Status = require('../../src/entities/agent/status');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + 'caliperEventQuestionnaireItemStarted.json';
+var path = config.testFixturesBaseDir.v1p1 + 'caliperEventQuestionnaireItemCompleted.json';
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
 
-  test('questionnaireItemEventStartedTest', function (t) {
+  test('questionnaireItemEventCompletedTest', function (t) {
 
     // Plan for N assertions
     t.plan(1);
@@ -75,6 +76,17 @@ testUtils.readFile(path, function(err, fixture) {
         weight: 1.0
     });
 
+    // RatingScaleResponse (generated)
+
+    var sampleRatingScaleResponse = entityFactory().create(RatingScaleResponse, {
+      id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/1/users/554433/responses/1'),
+      selections: ['Satisfied'],
+      startedAtTime: '2018-08-01T05:55:48.000Z',
+      endedAtTime: '2018-08-01T06:00:00.000Z',
+      duration: 'PT4M12S',
+      dateCreated: '2018-08-01T06:00:00.000Z'
+    });
+
     // CourseSection (group)
     var sampleCourseSection = entityFactory().create(CourseSection, {
       id: BASE_EDU_IRI.concat('/terms/201801/courses/7/sections/1'),
@@ -100,10 +112,11 @@ testUtils.readFile(path, function(err, fixture) {
 
     // Event
     var event = eventFactory().create(QuestionnaireItemEvent, {
-      id: 'urn:uuid:23995ed4-3c6b-11e9-b210-d663bd873d93',
+      id: 'urn:uuid:590f1ff2-3c6d-11e9-b210-d663bd873d93',
       actor: samplePerson,
-      action: actions.started.term,
+      action: actions.completed.term,
       object: sampleQuestionnaireItem,
+      generated: sampleRatingScaleResponse,
       eventTime: '2018-11-12T10:15:00.000Z',
       edApp: BASE_EDU_IRI,
       group: sampleCourseSection,

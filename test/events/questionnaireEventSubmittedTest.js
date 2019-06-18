@@ -22,15 +22,14 @@ var test = require('tape');
 
 var config = require('../../src/config/config');
 var eventFactory = require('../../src/events/eventFactory');
-var QuestionnaireItemEvent = require('../../src/events/questionnaireItemEvent');
+var QuestionnaireEvent = require('../../src/events/questionnaireEvent');
 var actions = require('../../src/actions/actions');
 
 var entityFactory = require('../../src/entities/entityFactory');
 var CourseSection = require('../../src/entities/agent/courseSection');
-var LikertScale = require('../../src/entities/scale/likertScale');
 var Membership = require('../../src/entities/agent/membership');
 var Person = require('../../src/entities/agent/person');
-var RatingScaleQuestion = require('../../src/entities/question/ratingScaleQuestion');
+var Questionnaire = require('../../src/entities/resource/questionnaire');
 var QuestionnaireItem = require('../../src/entities/resource/questionnaireItem');
 var Role = require('../../src/entities/agent/role');
 var Session = require('../../src/entities/session/session');
@@ -39,12 +38,12 @@ var Status = require('../../src/entities/agent/status');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + 'caliperEventQuestionnaireItemStarted.json';
+var path = config.testFixturesBaseDir.v1p1 + 'caliperEventQuestionnaireSubmitted.json';
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
 
-  test('questionnaireItemEventStartedTest', function (t) {
+  test('questionnaireEventSubmittedTest', function (t) {
 
     // Plan for N assertions
     t.plan(1);
@@ -54,25 +53,18 @@ testUtils.readFile(path, function(err, fixture) {
     // Person (actor)
     var samplePerson = entityFactory().create(Person, {id: BASE_EDU_IRI.concat('/users/554433')});
 
-    // QuestionnaireItem, RatingScaleQuestion, and LikertScale (object)
-    var sampleLikertScale = entityFactory().create(LikertScale, {
-        id: BASE_EDU_IRI.concat('/scale/2'),
-        scalePoints: 4,
-        itemLabels: ['Strongly Disagree', 'Disagree', 'Agree', 'Strongly Agree'],
-        itemValues: ['-2', '-1', '1', '2']
+    // Questionnaire and QuestionnaireItems (object)
+    var questionnaireItemOne = entityFactory().create(QuestionnaireItem, {
+        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/1')
+    });
+    var questionnaireItemTwo = entityFactory().create(QuestionnaireItem, {
+        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/2')
     });
 
-    var sampleRatingScaleQuestion = entityFactory().create(RatingScaleQuestion, {
-        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/1/question'),
-        questionPosed: 'How satisfied are you with our services?',
-        scale: sampleLikertScale,
-    });
-
-    var sampleQuestionnaireItem = entityFactory().create(QuestionnaireItem, {
-        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30/items/1'),
-        question: sampleRatingScaleQuestion,
-        categories: ['teaching effectiveness', 'Course structure'],
-        weight: 1.0
+    var sampleQuestionnaire = entityFactory().create(Questionnaire, {
+        id: BASE_EDU_IRI.concat('/surveys/100/questionnaires/30'),
+        items: [questionnaireItemOne, questionnaireItemTwo],
+        dateCreated: '2018-08-01T06:00:00.000Z'
     });
 
     // CourseSection (group)
@@ -99,11 +91,11 @@ testUtils.readFile(path, function(err, fixture) {
     });
 
     // Event
-    var event = eventFactory().create(QuestionnaireItemEvent, {
-      id: 'urn:uuid:23995ed4-3c6b-11e9-b210-d663bd873d93',
+    var event = eventFactory().create(QuestionnaireEvent, {
+      id: 'urn:uuid:79f18ac2-3c6b-11e9-b210-d663bd873d93',
       actor: samplePerson,
-      action: actions.started.term,
-      object: sampleQuestionnaireItem,
+      action: actions.submitted.term,
+      object: sampleQuestionnaire,
       eventTime: '2018-11-12T10:15:00.000Z',
       edApp: BASE_EDU_IRI,
       group: sampleCourseSection,

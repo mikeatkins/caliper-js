@@ -313,17 +313,19 @@ Caliper.Entities.RatingScaleResponse       = require('./entities/response/rating
 Caliper.Entities.SelectTextResponse        = require('./entities/response/selectTextResponse');
 Caliper.Entities.TrueFalseResponse         = require('./entities/response/trueFalseResponse');
 
+// Scale
+Caliper.Entities.LikertScale               = require('./entities/scale/likertScale');
+Caliper.Entities.MultiselectScale          = require('./entities/scale/multiselectScale');
+Caliper.Entities.NumericScale              = require('./entities/scale/numericScale');
+Caliper.Entities.Scale                     = require('./entities/scale/scale');
+
 // Search
 Caliper.Entities.Query                     = require('./entities/search/query');
 Caliper.Entities.SearchResponse            = require('./entities/search/searchResponse');
 
 // Survey
 Caliper.Entities.Comment                   = require('./entities/survey/comment');
-Caliper.Entities.LikertScale               = require('./entities/survey/likertScale');
-Caliper.Entities.MultiselectScale          = require('./entities/survey/multiselectScale');
-Caliper.Entities.NumericScale              = require('./entities/survey/numericScale');
 Caliper.Entities.Rating                    = require('./entities/survey/rating');
-Caliper.Entities.Scale                     = require('./entities/survey/scale');
 Caliper.Entities.Survey                    = require('./entities/survey/survey');
 
 // Session
