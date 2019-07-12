@@ -40,12 +40,12 @@ var Status = require('../../src/entities/agent/status');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + 'caliperEventQuestionnaireItemCompleted.json';
+var path = config.testFixturesBaseDir.v1p1 + 'caliperEventQuestionnaireItemCompletedRatingScaleQuestion.json';
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
 
-  test('questionnaireItemEventCompletedTest', function (t) {
+  test('questionnaireItemEventCompletedRatingScaleQuestionTest', function (t) {
 
     // Plan for N assertions
     t.plan(1);
