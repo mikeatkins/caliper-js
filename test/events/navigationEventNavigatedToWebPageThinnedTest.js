@@ -37,12 +37,12 @@ var Status = require('../../src/entities/agent/status');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEventNavigationNavigatedToThinned.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEventNavigationNavigatedToWebPageThinned.json";
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
 
-  test('navigationEventNavigatedToThinnedTest', function (t) {
+  test('navigationEventNavigatedToWebPageThinnedTest', function (t) {
 
     // Plan for N assertions
     t.plan(1);

@@ -37,12 +37,12 @@ var Status = require('../../src/entities/agent/status');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEventViewViewedExtended.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEventViewViewedDocument.json";
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
 
-  test('viewEventViewedExtendedTest', function (t) {
+  test('viewEventViewedDocumentTest', function (t) {
 
     // Plan for N assertions
     t.plan(1);
@@ -51,7 +51,7 @@ testUtils.readFile(path, function(err, fixture) {
     var BASE_SECTION_IRI = "https://example.edu/terms/201601/courses/7/sections/1";
 
     // Id with canned value
-    uuid = "urn:uuid:3a9bd869-addc-48b1-80f6-a14b2ff591ed";
+    uuid = "urn:uuid:cd088ca7-c044-405c-bb41-0b2a8506f907";
 
     // The Actor
     var actor = entityFactory().create(Person, {id: BASE_IRI.concat("/users/554433")});
@@ -61,8 +61,10 @@ testUtils.readFile(path, function(err, fixture) {
 
     // The Object of the interaction
     var obj = entityFactory().create(Document, {
-      id: BASE_IRI.concat("/etexts/200.epub"),
-      name: "IMS Caliper Specification",
+      id: BASE_IRI.concat("/etexts/201.epub"),
+      name: "IMS Caliper Implementation Guide",
+      dateCreated: moment.utc("2016-08-01T06:00:00.000Z"),
+      datePublished: moment.utc("2016-10-01T06:00:00.000Z"),
       version: "1.1"
     });
 
@@ -95,15 +97,6 @@ testUtils.readFile(path, function(err, fixture) {
       startedAtTime: moment.utc("2016-11-15T10:00:00.000Z")
     });
 
-    // Extensions
-    var extensions = {
-      job: {
-        id: "08c1233d-9ba3-40ac-952f-004c47a50ff7",
-        jobTag: "caliper_batch_job",
-        jobDate: moment.utc("2016-11-16T01:01:00.000Z")
-      }
-    };
-
     // Assert that key attributes are the same
     var event = eventFactory().create(ViewEvent, {
       id: uuid,
@@ -114,8 +107,7 @@ testUtils.readFile(path, function(err, fixture) {
       edApp: edApp,
       group: group,
       membership: membership,
-      session: session,
-      extensions: extensions
+      session: session
     });
 
     // Compare

@@ -33,12 +33,12 @@ var Rating = require('../../src/entities/survey/rating');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEntityRating.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEntityRatingWithLikertScale.json";
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
   
-  test('ratingTest', function (t) {
+  test('ratingWithLikertScaleTest', function (t) {
     
     // Plan for N assertions
     t.plan(1);

@@ -38,12 +38,12 @@ var Status = require('../../src/entities/agent/status');
 var clientUtils = require('../../src/clients/clientUtils');
 var testUtils = require('../testUtils');
 
-var path = config.testFixturesBaseDir.v1p1 + "caliperEventViewViewedFedSession.json";
+var path = config.testFixturesBaseDir.v1p1 + "caliperEventViewViewedDocumentFedSession.json";
 
 testUtils.readFile(path, function(err, fixture) {
   if (err) throw err;
 
-  test('viewEventViewedFedSessionTest', function (t) {
+  test('viewEventViewedDocumentFedSessionTest', function (t) {
 
     // Plan for N assertions
     t.plan(1);
