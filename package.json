@@ -32,7 +32,7 @@
     "hashmap": ">=2.1.x",
     "http-browserify": ">=1.7.x",
     "https-browserify": ">=1.0.x",
-    "lodash": ">=4.17.11",
+    "lodash": "^4.17.14",
     "moment": ">=2.24.x",
     "node-uuid": ">=1.4.x",
     "request": ">=2.88.x",
